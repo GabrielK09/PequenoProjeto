@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('cnpj', 14)->nullable();
             $table->string('cep', 8);
             $table->string('address', 200);
+            $table->string('uf', 2);
+            $table->string('country', 100);
             
             $table->timestamps();
         });

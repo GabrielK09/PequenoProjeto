@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('product', 100);
             $table->string('description', 200);
-            $table->float('qtde', 10, 2);
+            $table->float('qtde', 15, 4);
             $table->float('sale_price', 10, 2);
             $table->string('image', 100);
+            $table->string('cfop', 4);
+            $table->string('csosn', 3);
+            $table->string('ncm', 50);
             $table->timestamps();
 
         });
