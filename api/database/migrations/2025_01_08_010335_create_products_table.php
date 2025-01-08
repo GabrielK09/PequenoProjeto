@@ -21,14 +21,13 @@ return new class extends Migration
             $table->string('cfop', 4);
             $table->string('csosn', 3);
             $table->string('ncm', 50);
+            $table->float('icms', 40);
+
             $table->timestamps();
 
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('products');
