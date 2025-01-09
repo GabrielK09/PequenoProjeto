@@ -17,10 +17,18 @@ return new class extends Migration
             $table->boolean('type', 1);
             $table->string('cpf', 11)->nullable();
             $table->string('cnpj', 14)->nullable();
-            $table->string('cep', 8);
-            $table->string('address', 200);
+
             $table->string('uf', 2);
-            $table->string('country', 100);
+            $table->string('municipality', 2);
+            $table->integer('country_code', 8);
+            $table->string('country', 8);
+            $table->integer('cep', 8);
+
+            $table->string('address', 200);
+            $table->string('public_place', 200);
+            $table->integer('number', 90);
+            $table->string('complement', 200)->nullable();            
+            $table->string('neighborhood', 100);
             
             $table->timestamps();
         });
