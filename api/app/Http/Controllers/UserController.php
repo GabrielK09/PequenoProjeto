@@ -33,19 +33,22 @@ class UserController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+            'call' => 'required|string',
+            'login' => 'required|string',
+            'password' => 'required|string'
+
+        ]);
+        
+        return $this->userService->update($data, $id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    public function delete(int $id)
+    {  
+        return $this->userService->delete($id);
+        
     }
 }

@@ -25,4 +25,24 @@ class UserRepository implements UserInterface
 
         ]);
     }
+
+    public function update(array $data, int $id)
+    {
+        return Users::where('id', $id)->update([
+            'name' => $data['name'],
+            'call' => $data['call'],
+            'login' => $data['login'],
+            'password' => Hash::make($data['password']),
+            'active' => 1
+
+        ]);
+    }
+
+    public function delete(int $id)
+    {
+        return Users::where('id', $id)->update([
+            'active' => 0
+
+        ]);
+    }
 }

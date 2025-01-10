@@ -54,4 +54,36 @@ class UserService
 
         }
     }
+
+    public function update(array $data, int $id)
+    {
+        try {
+            return response()->json($this->repository->update($data, $id));
+
+        } catch (\Throwable $th) {
+            $this->returnResponseTh($th);
+
+        }
+    }
+
+    public function delete(int $id)
+    {
+        try {
+            return response()->json($this->repository->delete($id));
+
+        } catch (\Throwable $th) {
+            $this->returnResponseTh($th);
+
+        }
+    }
+
+    public function archiveFile(object $file, int $id)
+    {
+        $directory = public_path('uploads');
+
+        if(!$directory)
+        {
+            mkdir($directory);
+        }
+    }
 }
