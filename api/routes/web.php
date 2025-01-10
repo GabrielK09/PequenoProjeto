@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+use App\Http\Controllers\UserController;
+
+Route::prefix('v1')->group( function (){
+    Route::get('/all', [UserController::class, 'all'])->name('v1.all');
+    Route::post('/create', [UserController::class, 'create'])->name('v1.create');
+
+
 });
