@@ -1,1 +1,0 @@
-cep api: https://viacep.com.br/ws/89711226/json/
