@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\UserInterface;
+use App\Repositories\Interface\UserInterface;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
 

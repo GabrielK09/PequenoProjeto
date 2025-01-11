@@ -43,12 +43,23 @@ class UserController extends Controller
 
         ]);
         
-        return $this->userService->update($data, $id);
+    return $this->userService->update($data, $id);
     }
 
     public function delete(int $id)
     {  
         return $this->userService->delete($id);
         
+    }
+
+    public function archiveFile(Request $request)
+    {   
+        $data = $request->validate([
+            'file' => 'required|file|mimes:pdf'
+        ]);
+
+        return response()->json($data['file']);
+        //return $this->userService->archiveFile($data['file']);
+
     }
 }

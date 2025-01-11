@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('call')->default(0);
             $table->string('login');
             $table->string('password');
-            $table->boolean('password', 1)->default(1);
+            $table->boolean('active', 1)->default(1);
             $table->timestamps();
             
         });

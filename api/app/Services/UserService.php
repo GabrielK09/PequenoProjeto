@@ -77,13 +77,24 @@ class UserService
         }
     }
 
-    public function archiveFile(object $file, int $id)
+    public function archiveFile(object $file)
     {
-        $directory = public_path('uploads');
-
-        if(!$directory)
-        {
-            mkdir($directory);
+        try {
+            // $directory = public_path('uploads');
+            // $name = $file->getClientOriginalname();
+            // $extension = $file->getClienteExtension();
+    
+            // if(!$directory)
+            // {
+            //     mkdir($directory, 0755, true);
+    
+            // }
+            // $newName = $name . '.' . $extension;
+    
+            // $path = $file->move($directory, $newName);
+            return response()->json($file);
+        } catch (\Throwable $th) {
+            $this->returnResponseTh($th);
         }
     }
 }
