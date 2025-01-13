@@ -23,12 +23,11 @@ class UserController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string',
-            'call' => 'required|string',
-            'login' => 'required|string',
-            'password' => 'required|string'
+            'login' => 'required',
+            'password' => 'required'
 
         ]);
-
+    
         return $this->userService->create($data);
 
     }
@@ -52,14 +51,14 @@ class UserController extends Controller
         
     }
 
-    public function archiveFile(Request $request)
+    public function archiveFile(Request $request, int $id)
     {   
         $data = $request->validate([
             'file' => 'required|file|mimes:pdf'
         ]);
 
-        return response()->json($data['file']);
-        //return $this->userService->archiveFile($data['file']);
+        //return response()->json($data['file']);
+        return $this->userService->archiveFile($data['file'], $id);
 
     }
 }

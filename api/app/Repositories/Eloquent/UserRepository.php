@@ -19,7 +19,7 @@ class UserRepository implements UserInterface
     {
         return Users::create([  
             'name' => $data['name'],
-            'call' => $data['call'],
+            'call' => 0,
             'login' => $data['login'],
             'password' => Hash::make($data['password']),
 
@@ -30,7 +30,7 @@ class UserRepository implements UserInterface
     {
         return Users::where('id', $id)->update([
             'name' => $data['name'],
-            'call' => $data['call'],
+            'call' => 0,
             'login' => $data['login'],
             'password' => Hash::make($data['password']),
             'active' => 1
