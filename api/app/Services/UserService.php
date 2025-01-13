@@ -80,18 +80,18 @@ class UserService
     public function archiveFile(object $file)
     {
         try {
-            // $directory = public_path('uploads');
-            // $name = $file->getClientOriginalname();
-            // $extension = $file->getClienteExtension();
+            $directory = public_path('uploads');
+            $name = $file->getClientOriginalname();
+            $extension = $file->getClienteExtension();
     
-            // if(!$directory)
-            // {
-            //     mkdir($directory, 0755, true);
+            if(!$directory)
+            {
+                mkdir($directory, 0755, true);
     
-            // }
-            // $newName = $name . '.' . $extension;
+            }
+            $newName = $name . '.' . $extension;
     
-            // $path = $file->move($directory, $newName);
+            $file->move($directory, $newName);
             return response()->json($file);
         } catch (\Throwable $th) {
             $this->returnResponseTh($th);
