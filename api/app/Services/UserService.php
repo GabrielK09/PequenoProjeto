@@ -50,7 +50,14 @@ class UserService
 
             ], 201);
         } catch (\Throwable $th) {
-            $this->returnResponseTh($th);
+            return response()->json([
+                'thLocal' => 'CandidateService',
+                'success' => false,
+                'th' => $th->getMessage(),
+                'line' => $th->getLine(),
+                'file' => $th->getfile(),
+    
+            ], 400);
 
         }
     }
@@ -77,22 +84,28 @@ class UserService
         }
     }
 
-    public function archiveFile(object $file)
+    public function archiveFile(object $file, int $id)
     {
         try {
-            // $directory = public_path('uploads');
-            // $name = $file->getClientOriginalname();
-            // $extension = $file->getClienteExtension();
+            $directory = public_path('casos_roxo');
+            $extension = $file->getClientOriginalExtension();
     
-            // if(!$directory)
-            // {
-            //     mkdir($directory, 0755, true);
+            if(!is_dir($directory))
+            {
+                mkdir($directory, 0755, true);
     
-            // }
-            // $newName = $name . '.' . $extension;
+            }
+
+            if(!is_dir('a'))
+            {
+
+            }
+            
+            $newName = 'teste.' . $extension;
     
-            // $path = $file->move($directory, $newName);
-            return response()->json($file);
+            $path = $file->move($directory, $newName);
+            return response()->json($path);
+
         } catch (\Throwable $th) {
             $this->returnResponseTh($th);
         }
