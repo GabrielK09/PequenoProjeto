@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Repositories\Eloquent\LoginRepository;
 use Illuminate\Support\Facades\Hash;
-
 class LoginService
 {
     protected $repository;
