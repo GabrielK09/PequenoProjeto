@@ -18,14 +18,14 @@
 
   <div class="p-4 sm:ml-32">
     <header class="flex bg-gray-800 p-4">
-      <h1>Grupo Roxo</h1>
+      <h1 class="text-white text-xl">Grupo Roxo, Olá {{ user_id }}</h1>
 
     </header>
   
     <FormReport
       v-if="this.show"
       :show="this.show"
-
+      :user_id="this.user_id"
     />
   </div>
 
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-  import axios from "axios";
+  //import axios from "axios";
   import FormReport from "./components/FormReport.vue";
   
   export default {
@@ -48,8 +48,8 @@
    
     data(){
       return {
-        show: true
-
+        show: true,
+        user_id_: null
       }
 
     },
@@ -57,9 +57,15 @@
       FormReport
 
     },
+    props: {
+      user_id: {
+        type: String,
+        required: true
+
+      }
+    },
     methods: {
       report() {
-        
         this.show = !this.show
 
       }

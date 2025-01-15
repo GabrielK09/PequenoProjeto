@@ -38,6 +38,12 @@ class UserRepository implements UserInterface
         ]);
     }
 
+    public function findByID(int $id)
+    {
+        return Users::where('id', $id)->first();
+        
+    }
+
     public function delete(int $id)
     {
         return Users::where('id', $id)->update([

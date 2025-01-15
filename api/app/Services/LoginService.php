@@ -32,7 +32,8 @@ class LoginService
             {
                 return response()->json([
                     'success' => true,
-                    'message' => 'Login bem sucedido'
+                    'message' => 'Login bem sucedido',
+                    'user' => $user->id
 
                 ]);
             }
@@ -44,7 +45,7 @@ class LoginService
             ]);
 
         } catch (\Throwable $th) {
-            $this->returnResponseTh($th);
+            return $this->returnResponseTh($th);
         }
     }
 

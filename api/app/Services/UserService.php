@@ -36,7 +36,7 @@ class UserService
             ], 200);
 
         } catch (\Throwable $th) {
-            $this->returnResponseTh($th);
+            return $this->returnResponseTh($th);
             
         }
     }
@@ -68,9 +68,18 @@ class UserService
             return response()->json($this->repository->update($data, $id));
 
         } catch (\Throwable $th) {
-            $this->returnResponseTh($th);
+            return $this->returnResponseTh($th);
 
         }
+    }
+
+    public function findByID(int $id)
+    {
+        try {
+            return $this->repository->findByID($id);
+        } catch (\Throwable $th) {
+            return $this->returnResponseTh($th);
+        }        
     }
 
     public function delete(int $id)
@@ -79,35 +88,8 @@ class UserService
             return response()->json($this->repository->delete($id));
 
         } catch (\Throwable $th) {
-            $this->returnResponseTh($th);
+            return $this->returnResponseTh($th);
 
-        }
-    }
-
-    public function archiveFile(object $file, int $id)
-    {
-        try {
-            $directory = public_path('casos_roxo');
-            $extension = $file->getClientOriginalExtension();
-    
-            if(!is_dir($directory))
-            {
-                mkdir($directory, 0755, true);
-    
-            }
-
-            if(!is_dir('a'))
-            {
-
-            }
-            
-            $newName = 'teste.' . $extension;
-    
-            $path = $file->move($directory, $newName);
-            return response()->json($path);
-
-        } catch (\Throwable $th) {
-            $this->returnResponseTh($th);
         }
     }
 }
