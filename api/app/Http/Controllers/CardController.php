@@ -21,6 +21,7 @@ class CardController extends Controller
             'title' => 'required',
             'group' => 'required',
             'description' => 'required',
+            'status' => 'required',
             'file' => 'required',
 
        ]);

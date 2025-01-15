@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('group');
+            $table->string('status');
             $table->string('file_path');
             $table->timestamps();
         });

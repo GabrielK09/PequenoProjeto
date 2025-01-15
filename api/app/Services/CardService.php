@@ -52,8 +52,8 @@ class CardService
         try {
             $directory = public_path('casos_roxo/' . $this->userRepository->findByID($id)->name . '/' . $group);
             $name = $file->getClientOriginalName();
-            $extension = $file->getClientOriginalExtension();
-    
+            //$extension = $file->getClientOriginalExtension();
+
             if(!is_dir($directory))
             {
                 mkdir($directory, 0755, true);

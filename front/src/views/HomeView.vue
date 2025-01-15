@@ -18,7 +18,7 @@
 
   <div class="p-4 sm:ml-32">
     <header class="flex bg-gray-800 p-4">
-      <h1 class="text-white text-xl">Grupo Roxo, Olá {{ user_id }}</h1>
+      <h1 class="text-white text-xl">ClickUp Grupo Roxo, Olá {{ user }}</h1>
 
     </header>
   
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-  //import axios from "axios";
+  import axios from "axios";
   import FormReport from "./components/FormReport.vue";
   
   export default {
@@ -49,7 +49,8 @@
     data(){
       return {
         show: true,
-        user_id_: null
+        user: null,
+        api: process.env.VUE_APP_API_URL
       }
 
     },
@@ -65,11 +66,21 @@
       }
     },
     methods: {
+      async getUser()
+      {
+        const userData = await axios.get(`${this.api}/user/${this.user_id}`)
+        this.user = userData.data.name
+        console.log(userData.data.name) 
+      },
       report() {
         this.show = !this.show
 
       }
     },
-
+    mounted()
+    {
+      this.getUser()
+      
+    }
   }
 </script>

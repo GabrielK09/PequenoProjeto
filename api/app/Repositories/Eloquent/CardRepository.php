@@ -24,6 +24,7 @@ class CardRepository implements CardInterface
                 'title' => $data['title'],
                 'description' => $data['description'],
                 'group' => $data['group'],
+                'status' => $data['status'],
                 'file_path' => $file_path
     
             ]);

@@ -30,6 +30,14 @@
                     <option :value="'Hugo - Aguia'">Hugo - Aguia</option>
                 </select>
             </div>
+             
+            <div class="mb-2">
+                <select class="shadow border rounded py-2 px-1" v-model="form.status">
+                    <option value="" disabled selected>Status</option>
+                    <option :value="'Pendente'">Pendente</option>
+                    <option :value="'Resolvido'">Resolvido</option>
+                </select>
+            </div>
 
             <div class="max-w-40">
                 <label for="fileUpload" class="block text-white text-xl py-2 font-bold rounded cursor-pointer hover:bg-gray-400 w-40">Enviar arquivo</label>
@@ -59,6 +67,7 @@ import axios from 'axios';
                     title: null,
                     description: null,
                     group: null,
+                    status: null,
                     file: null
                 },
                 message: null,
@@ -106,6 +115,7 @@ import axios from 'axios';
                 form.append("title", this.form.title)
                 form.append("description", this.form.description)
                 form.append("group", this.form.group)
+                form.append("status", this.form.status)
                 form.append("file", this.form.file)
 
                 console.log('Dados', this.form.group)

@@ -14,6 +14,7 @@ class Card extends Model
         'title',
         'description',
         'group',
+        'status',
         'file_path'
     ];
 }

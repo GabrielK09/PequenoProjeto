@@ -50,8 +50,11 @@ class UserController extends Controller
         return $this->userService->delete($id);
         
     }
-
-    public function archiveFile(Request $request, int $id)
+    public function findByID(int $id)
+    {
+        return $this->userService->findByID($id);
+    }
+    /*public function archiveFile(Request $request, int $id)
     {   
         $data = $request->validate([
             'file' => 'required|file'
@@ -59,5 +62,4 @@ class UserController extends Controller
 
         return $this->userService->archiveFile($data['file'], $id);
 
-    }
-}
+    }*/}
