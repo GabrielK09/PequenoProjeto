@@ -65,7 +65,11 @@
 
                     if(response.data.success === true)
                     {
-                        this.$router.push('/home')
+                        this.$router.push({ 
+                            name: 'home',
+                            params: { user_id: response.data.user } 
+
+                        })
 
                     }
 

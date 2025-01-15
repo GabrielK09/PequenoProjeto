@@ -54,10 +54,9 @@ class UserController extends Controller
     public function archiveFile(Request $request, int $id)
     {   
         $data = $request->validate([
-            'file' => 'required|file|mimes:pdf'
+            'file' => 'required|file'
         ]);
 
-        //return response()->json($data['file']);
         return $this->userService->archiveFile($data['file'], $id);
 
     }

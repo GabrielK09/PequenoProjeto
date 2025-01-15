@@ -10,9 +10,11 @@ const routes = [
     
   },
   {
-    path: '/home',
+    path: '/home/:user_id',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    props: true,
+
     
   },
 ]

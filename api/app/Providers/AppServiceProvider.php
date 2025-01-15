@@ -4,11 +4,19 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use App\Repositories\Eloquent\UserRepository;
-use App\Repositories\Interface\UserInterface;
+use App\Repositories\Interface\{
+    LoginInterface,
+    CardInterface,
+    UserInterface
+};
 
-use App\Repositories\Interface\LoginInterface;
-use App\Repositories\Eloquent\LoginRepository;
+use App\Repositories\Eloquent\{
+    LoginRepository,
+    CardRepository,
+    UserRepository,
+    
+};
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserInterface::class, UserRepository::class);
         $this->app->bind(LoginInterface::class, LoginRepository::class);
+        $this->app->bind(CardInterface::class, CardRepository::class);
 
     }
     
