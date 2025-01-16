@@ -29,4 +29,20 @@ class CardController extends Controller
        return $this->cardService->create($data);
 
     }
+
+    public function update(Request $request, int $id)
+    {        
+        $data = $request->validate([
+            'user_id' => 'required',
+            'title' => 'required',
+            'group' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+            'file' => 'required',
+
+       ]);
+       
+       return $this->cardService->create($data);
+
+    }
 }
