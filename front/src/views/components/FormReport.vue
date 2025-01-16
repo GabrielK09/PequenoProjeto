@@ -25,7 +25,7 @@
             
             <div class="mb-2">
                 <select class="shadow border rounded py-2 px-1" v-model="form.group">
-                    <option value="" disabled selected>Selecione o Grupo</option>
+                    <option value="" disabled selected class="text-red-500">Selecione o Grupo</option>
                     <option :value="'Alpes'">Alpes</option>
                     <option :value="'Hugo - Aguia'">Hugo - Aguia</option>
                 </select>
@@ -33,7 +33,7 @@
              
             <div class="mb-2">
                 <select class="shadow border rounded py-2 px-1" v-model="form.status">
-                    <option value="" disabled selected>Status</option>
+                    <option value="" disabled selected class="text-red-500">Status</option>
                     <option :value="'Pendente'">Pendente</option>
                     <option :value="'Resolvido'">Resolvido</option>
                 </select>
@@ -50,8 +50,8 @@
                 />
                 
             </div>
-            <button type="submit">Enviar</button>
-            <p v-if="message"> {{ message }}</p>
+            <button type="submit" class="text-white">Enviar</button>
+            <p v-if="message" class="text-white"> {{ message }}</p>
         </form>
     </div>
 </template>
@@ -109,6 +109,7 @@ import axios from 'axios';
                 } 
             },
             async submitForm(){
+                this.message = 'Carregando...'
                 const form = new FormData()
 
                 form.append("user_id", this.user_id)
@@ -121,7 +122,11 @@ import axios from 'axios';
                 console.log('Dados', this.form.group)
 
                 const response = await axios.post(`${this.api}/create-card`, form)
-                console.log('Response', response)
+                if(response.data.success === 'true')
+                {
+                    alert('Card criado com successo!')
+                    this.message = ''
+                }
             }
         },
         mounted()
