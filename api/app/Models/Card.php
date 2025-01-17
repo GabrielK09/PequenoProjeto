@@ -14,6 +14,7 @@ class Card extends Model
         'title',
         'description',
         'group',
+        'contact',
         'status',
         'file_path'
     ];

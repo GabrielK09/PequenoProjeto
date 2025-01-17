@@ -22,20 +22,23 @@
                     
                 />
             </div>
+
+            <div class="mb-2">
+                <label class="block text-white text-sm font-bold mb-2">Contato: </label>
+                <input 
+                    type="text" 
+                    class="shadow appearance-none border rounded w-full py-2 px-1 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="..."
+                    v-model="form.contact"
+                    
+                />
+            </div>
             
             <div class="mb-2">
                 <select class="shadow border rounded py-2 px-1" v-model="form.group">
                     <option value="" disabled selected>Selecione o Grupo</option>
                     <option :value="'Alpes'">Alpes</option>
                     <option :value="'Hugo - Aguia'">Hugo - Aguia</option>
-                </select>
-            </div>
-             
-            <div class="mb-2">
-                <select class="shadow border rounded py-2 px-1" v-model="form.status">
-                    <option value="" disabled selected>Status</option>
-                    <option :value="'Pendente'">Pendente</option>
-                    <option :value="'Resolvido'">Resolvido</option>
                 </select>
             </div>
 
@@ -64,11 +67,11 @@ import axios from 'axios';
         data(){
             return {
                 form: {
-                    title: null,
-                    description: null,
-                    group: null,
-                    status: null,
-                    file: null
+                    title: '',
+                    description: '',
+                    group: '',
+                    contact: '',
+                    file: ''
                 },
                 message: null,
                 api: process.env.VUE_APP_API_URL
@@ -116,11 +119,10 @@ import axios from 'axios';
                 form.append("title", this.form.title)
                 form.append("description", this.form.description)
                 form.append("group", this.form.group)
-                form.append("status", this.form.status)
+                form.append("contact", this.form.contact)
                 form.append("file", this.form.file)
 
-                console.log('Dados', this.form.group)
-
+                console.log(form)
                 const response = await axios.post(`${this.api}/create-card`, form)
                 if(response.data.success === 'true')
                 {

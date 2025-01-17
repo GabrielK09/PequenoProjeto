@@ -23,7 +23,6 @@ class CardService
     public function returnResponseTh($th)
     {
         return response()->json([
-            'thLocal' => 'CandidateService',
             'success' => false,
             'th' => $th->getMessage(),
             'line' => $th->getLine(),
@@ -35,7 +34,7 @@ class CardService
     public function create(array $data)
     {
         try {
-            $file_path = $this->archiveFile($data['file'], $data['user_id'], $data['group'], $data['description']);
+            $file_path = $this->archiveFile($data['file'], $data['user_id'], $data['group'] ?? $data['contact'], $data['description']);
             $card = $this->repository->create($data, $file_path);
             return response()->json([
                 'success' => $card['success'],

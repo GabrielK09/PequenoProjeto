@@ -10,10 +10,10 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('call')->nullable()->default(0);
-            $table->string('login');
-            $table->string('password');
+            $table->string('name', 40);
+            $table->bigInteger('call')->default(0);
+            $table->string('login', 40);
+            $table->string('password', 60);
             $table->boolean('active', 1)->default(1);
             $table->timestamps();
             

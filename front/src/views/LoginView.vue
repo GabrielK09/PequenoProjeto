@@ -52,9 +52,11 @@
                 try {
                     const data = {
                         login: this.login,
-                        password: this.password
+                        password: this.password,
+                        message: this.message
+
                     }
-                    console.log('Envio', data, 'rota', this.api)
+                    
                     const response = await axios.post(`${this.api}/login`, data);
                     this.message = 'Carregando...'
 
