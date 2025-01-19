@@ -57,10 +57,6 @@
 
                     }
                     
-<<<<<<< HEAD
-=======
-                    const response = await axios.post(`${this.api}/login`, data);
->>>>>>> 1a602c4c0be07e367605139a12bdf137e009d071
                     this.message = 'Carregando...'
                     const response = await axios.post(`${this.api}/login`, data);
 
