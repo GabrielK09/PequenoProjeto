@@ -11,7 +11,8 @@ class Calls extends Model
     protected $fillable = [
         'user_id',
         'user',
-        'total_call',
+        'before_call',
+        'after_call',
         'period'
     ];
 }

@@ -7,6 +7,7 @@
                     type="text" 
                     class="shadow appearance-none border rounded w-full py-2 px-1 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder="..."
+                    maxlength="120"
                     v-model="form.title"
                     
                 />
@@ -18,6 +19,7 @@
                     type="text" 
                     class="shadow appearance-none border rounded w-full py-2 px-1 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder="..."
+                    maxlength="255"
                     v-model="form.description"
                     
                 />
@@ -29,6 +31,7 @@
                     type="text" 
                     class="shadow appearance-none border rounded w-full py-2 px-1 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder="..."
+                    maxlength="100"
                     v-model="form.contact"
                     
                 />
@@ -53,7 +56,10 @@
                 />
                 
             </div>
-            <button type="submit" class="text-white">Enviar</button>
+            <button type="submit" class="text-white">
+                Enviar
+                
+            </button>
             <p v-if="message" class="text-white"> {{ message }}</p>
         </form>
     </div>

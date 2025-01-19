@@ -45,14 +45,33 @@ class CardService
         try {
             $file_path = $this->archiveFile($data['file'], $data['user_id'], $data['group'] ?? $data['contact'], $data['description']);
             $card = $this->repository->create($data, $file_path);
+
             return response()->json([
                 'success' => $card['success'],
                 'message' => $card
-            ]);
+
+            ], 200);
+
         } catch (\Throwable $th) {
             return $this->returnResponseTh($th);
         }
         
+    }
+
+    public function update(array $data, int $id)
+    {
+        try {
+            $this->repository->update($data, $id);
+            
+            return response()->json([
+                'success' => true,
+                'update' => $this->repository->findByID($id)
+                
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return $this->returnResponseTh($th);
+        }
     }
 
     public function archiveFile(object $file, int $id, string $group, string $description)
@@ -67,10 +86,7 @@ class CardService
                 mkdir($directory, 0755, true);
     
             }
-            
-            /*$descriptionFile = fopen('Caso.txt', 'a');
-            fwrite($descriptionFile, $description);
-            fclose($descriptionFile);*/
+
             $descriptionFile = $directory . '/Caso.txt';
             file_put_contents($descriptionFile, $description);
 

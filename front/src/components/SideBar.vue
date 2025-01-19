@@ -20,6 +20,7 @@
                         <button 
                             @click="cards()"
                             class="ml-4"
+                            
                         >
                             Cards
                         </button>
@@ -53,6 +54,7 @@
     <CardsView
       v-if="this.showCard"
       :showCard="this.showCard"
+      :user_id="this.user_id"
     />
 
     <TecnicsView

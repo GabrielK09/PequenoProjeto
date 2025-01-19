@@ -9,8 +9,10 @@
       :user_id="this.user_id"
     
     /> 
+    <div class="">
+      <button @click="add">Call</button>
 
-    <button @click="add">Call</button>
+    </div>
   </div>
 </template>
 
@@ -23,7 +25,6 @@
    
     data(){
       return {
-        show: true,
         user: null,
         api: process.env.VUE_APP_API_URL
 
@@ -44,10 +45,18 @@
     methods: {
       async getUser()
       {
-        const userData = await axios.get(`${this.api}/user/${this.user_id}`)
-        this.user = userData.data.name
-        console.log(userData.data.name) 
-        
+        try {
+          const userData = await axios.get(`${this.api}/user/${this.user_id}`)
+          this.user = userData.data.name
+          if(userData.data.name === undefined || userData.data.name === null)
+          {
+            this.$router.push({ name: "Login", message: { message: "Usuário não encontrado " } })
+
+          } 
+        } catch (error) {
+          
+        }
+
       },
       
       async add(){

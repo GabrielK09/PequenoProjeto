@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
-            $table->string('user', 120);
+            $table->string('user', 100);
             $table->string('title', 120);
             $table->string('description', 255);
             $table->string('group', 100)->nullable();
             $table->string('contact', 100)->nullable();
             $table->string('status', 120)->default('Pendente');
-            $table->string('file_path');
+            $table->string('file_path', 150);
             $table->timestamps();
         });
     }

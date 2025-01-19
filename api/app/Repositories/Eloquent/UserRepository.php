@@ -66,9 +66,17 @@ class UserRepository implements UserInterface
         Calls::create([
             'user_id' => $user->id,
             'user' => $user->name,
+            'before_call' => $user->call,
+            'after_call' => $calls,
             'period' => $user->updated_at
         ]);
         
         $user->save();
+    }
+
+    public function filterCalls(int $id)
+    {
+        return Calls::latest('id', $id)->first()->after_call;
+        
     }
 }

@@ -65,20 +65,19 @@
                         this.message = response.data.message
                     }
 
-                    if(response.data.success === true && response.data.user_leader === 0)
+                    if(response.data.success === true)
                     {
                         this.$router.push({ 
-                            name: 'home',
+                            name: 'Home',
                             params: { user_id: response.data.user_id } 
 
                         })
 
-                    }
-
-                    
+                    }                    
 
                 } catch (error) {
                     console.error('Erro ao fazer login', error)
+                    
                 }
             }
         },
