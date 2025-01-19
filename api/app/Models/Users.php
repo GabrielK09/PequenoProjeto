@@ -13,6 +13,7 @@ class Users extends Model
         'call',
         'login',
         'password',
+        'leader',
         'active'
     ];
 }

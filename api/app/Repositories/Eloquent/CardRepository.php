@@ -14,17 +14,23 @@ class CardRepository implements CardInterface
         $this->userService = $userService;
     }
 
+    public function all()
+    {
+        return Card::paginate(10);
+    }
+
     public function create(array $data, string $file_path)
     {
         try {
+            
             $user = $this->userService->findByID($data['user_id']);
             Card::create([
                 'user_id' => $user->id,
                 'user' => $user->name,
                 'title' => $data['title'],
                 'description' => $data['description'],
-                'group' => $data['group'],
-                'status' => $data['status'],
+                'group' => $data['group'] ?? null,
+                'contact' => $data['contact'] ?? null,
                 'file_path' => $file_path
     
             ]);
@@ -36,7 +42,6 @@ class CardRepository implements CardInterface
 
         } catch (\Throwable $th) {
             return ([
-                'thLocal' => 'CandidateService',
                 'success' => 'false',
                 'th' => $th->getMessage(),
                 'line' => $th->getLine(),
@@ -45,5 +50,20 @@ class CardRepository implements CardInterface
             ]);
 
         }
+    }
+
+    public function update(array $data, int $id)
+    {
+        
+    }
+
+    public function findByID(int $id)
+    {
+        
+    }
+
+    public function delete(int $id)
+    {
+        
     }
 }

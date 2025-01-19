@@ -33,7 +33,8 @@ class LoginService
                 return response()->json([
                     'success' => true,
                     'message' => 'Login bem sucedido',
-                    'user' => $user->id
+                    'user_id' => $user->id,
+                    'user_leader' => $user->leader
 
                 ]);
             }
