@@ -10,6 +10,7 @@
     
     /> 
 
+    <button @click="add">Call</button>
   </div>
 </template>
 
@@ -49,6 +50,17 @@
         
       },
       
+      async add(){
+        try {
+          const response = await axios.put(`${this.api}/call/add/${this.user_id}`, {
+            call: 1
+          })
+          console.log(response)          
+        } catch (error) {
+          console.error(error)          
+        }
+
+      }
     },
     mounted()
     {

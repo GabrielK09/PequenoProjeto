@@ -65,7 +65,11 @@ class UserService
     public function update(array $data, int $id)
     {
         try {
-            return response()->json($this->repository->update($data, $id));
+            return response()->json([
+                'success' => true,
+                'update' => $this->repository->update($data, $id)
+            
+            ]);
 
         } catch (\Throwable $th) {
             return $this->returnResponseTh($th);
@@ -85,7 +89,25 @@ class UserService
     public function delete(int $id)
     {
         try {
-            return response()->json($this->repository->delete($id));
+            return response()->json([
+                'success' => true,
+                'delete' => $this->repository->delete($id)
+
+            ]);
+
+        } catch (\Throwable $th) {
+            return $this->returnResponseTh($th);
+
+        }
+    }
+
+    public function call(int $call, int $id)
+    {
+        try {
+            return response()->json([
+                'success' => true,
+                'call' => $this->repository->call($call, $id)
+            ]);
 
         } catch (\Throwable $th) {
             return $this->returnResponseTh($th);

@@ -9,5 +9,7 @@ interface UserInterface
     public function update(array $data, int $id);
     public function findByID(int $id);
     public function delete(int $id);
+
+    public function call(int $call, int $id);
     
 }

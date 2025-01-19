@@ -54,12 +54,9 @@ class UserController extends Controller
     {
         return $this->userService->findByID($id);
     }
-    /*public function archiveFile(Request $request, int $id)
-    {   
-        $data = $request->validate([
-            'file' => 'required|file'
-        ]);
-
-        return $this->userService->archiveFile($data['file'], $id);
-
-    }*/}
+    
+    public function call(Request $request, int $id)
+    {
+        return $this->userService->call($request->input('call'), $id);
+    }
+}

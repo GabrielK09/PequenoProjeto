@@ -14,6 +14,7 @@ Route::prefix('v1')->group( function (){
     Route::get('/all/users', [UserController::class, 'all']);
     Route::post('/create-user', [UserController::class, 'create']);
     Route::get('/user/{id}', [UserController::class, 'findByID']);
+    Route::put('/call/add/{id}', [UserController::class, 'call']);
 
     Route::get('/all/cards', [CardController::class, 'all']);
     Route::post('/create-card', [CardController::class, 'create']);
