@@ -41,6 +41,19 @@
                     </span>
                 
                 </li>
+
+                <li>
+                    <span class="flex p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">              
+                        <button 
+                            @click=""
+                            class="ml-4"
+                        >
+                            Ligações
+                        </button>
+
+                    </span>
+                
+                </li>
             </ul>
         </div>
     </aside>
@@ -75,7 +88,8 @@
             return {
                 show: false,
                 showCard: false,
-                showTechnicians: false
+                showTechnicians: false,
+                
             }
         },
         methods: {
@@ -98,6 +112,10 @@
                 // Mostrar os Cards, vai deixar o Form do Card e o técnicos no false
                 this.showCard = false
                 this.show = false
+            },
+
+            calls(){
+                
             }
 
         },
@@ -114,8 +132,7 @@
             CardsView,
             TecnicsView
 
-        },  
-       
+        },
     }
 
 </script>

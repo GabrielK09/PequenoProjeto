@@ -140,6 +140,20 @@ import axios from 'axios';
                 console.log('Response', response)
             }
         },
+
+        mounted(){
+            if(this.$route.name !== "Home")
+            {
+                console.log('Vai redirecionar para Home')
+                this.$router.push({
+                    name: "Home",
+                    params: {
+                        user_id: this.user_id,
+
+                    }
+                })
+            }
+        }
         
     }
 

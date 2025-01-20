@@ -53,6 +53,11 @@ class UsersSeeder extends Seeder
                 'name' => 'Rebocada',
                 'login' => 'reboco',
                 'password' => Hash::make('1'),
+            ],
+            [
+                'name' => 'Gabriel Colla',
+                'login' => 'colla',
+                'password' => Hash::make('1'),
             ]
         ];
 

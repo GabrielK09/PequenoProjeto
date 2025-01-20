@@ -1,6 +1,5 @@
 <template>
     <h1>Cards</h1>
-    {{ user_id }}
     <div v-for="card in cards" class="text-white p-2">
         <div class="bg-gray-400 w-70 h-40 border rounded-lg text-xs p-4">
             <span class="flex flex-row">Titulo: {{ card.title }}</span>
@@ -72,6 +71,16 @@
             }
         },
         mounted(){
+            if(this.$route.name !== "Home")
+            {
+                console.log('Vai redirecionar para Home')
+                this.$router.push({
+                    name: "Home",
+                    params: {
+                        user_id: this.user_id
+                    }
+                })
+            }
             this.getAll()
         }
     }
