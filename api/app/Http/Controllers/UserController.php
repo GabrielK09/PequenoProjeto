@@ -59,4 +59,21 @@ class UserController extends Controller
     {
         return $this->userService->call($request->input('call'), $id);
     }
+
+    public function getCalls(Request $request, int $id)
+    {
+        return $this->userService->getCalls($id);
+
+    }
+
+    public function filterCalls(Request $request, int $id)
+    {
+        $data = $request->validate([
+            'start' => 'required|date',
+            'end' => 'required|date'
+
+        ]);
+        return $this->userService->filterCalls($data, $id);
+
+    }
 }

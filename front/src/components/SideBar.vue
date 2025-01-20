@@ -45,7 +45,7 @@
                 <li>
                     <span class="flex p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">              
                         <button 
-                            @click=""
+                            @click="calls"
                             class="ml-4"
                         >
                             Ligações
@@ -75,13 +75,21 @@
       :showTechnicians="this.showTechnicians"
 
     />
+
+    <CallsView 
+      v-if="showCalls"
+      :showCalls="this.showCalls"
+      :user_id="this.user_id"
+    />
     
 </template>
 
 <script>
+    import CallsView from '@/views/components/CallsView.vue';
     import CardsView from '@/views/components/CardsView.vue';
     import TecnicsView from '@/views/components/TecnicsView.vue';
     import FormReport from '@/views/forms/create/FormReport.vue';
+    
     
     export default {
         data(){
@@ -89,33 +97,41 @@
                 show: false,
                 showCard: false,
                 showTechnicians: false,
-                
+                showCalls: false   
             }
         },
         methods: {
             report() {
                 this.show = !this.show
                 // Mostrar o Forms para o card, vai deixar o all Cards e o técnicos no false
-                this.showCard = false 
                 this.showTechnicians = false
-
+                this.showCalls = false
+                this.showCard = false 
+                
             },
             cards() {
                 this.showCard = !this.showCard
                 // Mostrar os Cards, vai deixar o Form do Card e o técnicos no false
-                this.show = false
                 this.showTechnicians = false
+                this.showCalls = false
+                this.show = false
             },
 
             technicians(){
                 this.showTechnicians = !this.showTechnicians
                 // Mostrar os Cards, vai deixar o Form do Card e o técnicos no false
                 this.showCard = false
+                this.showCalls = false
                 this.show = false
             },
 
             calls(){
-                
+                this.showCalls = !this.showCalls
+
+                this.showTechnicians = false
+                this.showCard = false
+                this.show = false
+
             }
 
         },
@@ -130,7 +146,8 @@
         components: {
             FormReport,
             CardsView,
-            TecnicsView
+            TecnicsView,
+            CallsView
 
         },
     }

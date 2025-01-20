@@ -114,4 +114,29 @@ class UserService
 
         }
     }
+
+    public function getCalls(int $id)
+    {
+        try {
+            return response()->json([
+                'success' => true,
+                'calls' => $this->repository->getCalls($id)
+            ]);
+        } catch (\Throwable $th) {
+            return $this->returnResponseTh($th);
+
+        }
+    }
+
+    public function filterCalls(array $data, int $id)
+    {
+        try {
+            return response()->json([
+                'success' => true,
+                'filter' => $this->repository->filterCalls($data, $id)
+            ]);
+        } catch (\Throwable $th) {
+            return $this->returnResponseTh($th);
+        }
+    }
 }

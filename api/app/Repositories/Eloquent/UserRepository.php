@@ -74,9 +74,23 @@ class UserRepository implements UserInterface
         $user->save();
     }
 
-    public function filterCalls(int $id)
+
+    public function getCalls(int $id)
     {
-        return Calls::latest('id', $id)->first()->after_call;
-        
+        return Users::where('id', $id)->first()->call;
+    }
+
+    public function filterCalls(array $data,int $id)
+    {
+        $filter = Calls::latest('id', $id)
+                    ->orWhereBetween('period', [$data['start'], $data['end']])
+                    ->first()
+                    ->after_call;
+        if($filter != null)
+        {
+            return $filter;
+
+        }
+        return null;   
     }
 }
