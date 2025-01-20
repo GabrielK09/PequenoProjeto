@@ -21,7 +21,7 @@
             placeholder="Insirá sua senha"
         />
 
-        <div v-if="message">
+        <div v-if="message" class="text-black">
             {{  message }}
         </div>
         
@@ -57,8 +57,8 @@
 
                     }
                     
-                    const response = await axios.post(`${this.api}/login`, data);
                     this.message = 'Carregando...'
+                    const response = await axios.post(`${this.api}/login`, data);
 
                     if(response.data.success === false)
                     {
@@ -68,15 +68,16 @@
                     if(response.data.success === true)
                     {
                         this.$router.push({ 
-                            name: 'home',
-                            params: { user_id: response.data.user } 
+                            name: 'Home',
+                            params: { user_id: response.data.user_id } 
 
                         })
 
-                    }
+                    }                    
 
                 } catch (error) {
                     console.error('Erro ao fazer login', error)
+                    
                 }
             }
         },

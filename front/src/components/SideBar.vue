@@ -18,8 +18,9 @@
                 <li>
                     <span class="flex p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">              
                         <button 
-                            @click=""
+                            @click="cards()"
                             class="ml-4"
+                            
                         >
                             Cards
                         </button>
@@ -31,7 +32,7 @@
                 <li>
                     <span class="flex p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">              
                         <button 
-                            @click=""
+                            @click="technicians"
                             class="ml-4"
                         >
                             Técnicos
@@ -49,23 +50,56 @@
       :show="this.show"
       :user_id="this.user_id"
     />
+
+    <CardsView
+      v-if="this.showCard"
+      :showCard="this.showCard"
+      :user_id="this.user_id"
+    />
+
+    <TecnicsView
+      v-if="this.showTechnicians"
+      :showTechnicians="this.showTechnicians"
+
+    />
     
 </template>
 
 <script>
-    import FormReport from '@/views/forms/FormReport.vue';
-
+    import CardsView from '@/views/components/CardsView.vue';
+    import TecnicsView from '@/views/components/TecnicsView.vue';
+    import FormReport from '@/views/forms/create/FormReport.vue';
+    
     export default {
         data(){
             return {
-                show: true,
+                show: false,
+                showCard: false,
+                showTechnicians: false
             }
         },
         methods: {
             report() {
                 this.show = !this.show
+                // Mostrar o Forms para o card, vai deixar o all Cards e o técnicos no false
+                this.showCard = false 
+                this.showTechnicians = false
 
+            },
+            cards() {
+                this.showCard = !this.showCard
+                // Mostrar os Cards, vai deixar o Form do Card e o técnicos no false
+                this.show = false
+                this.showTechnicians = false
+            },
+
+            technicians(){
+                this.showTechnicians = !this.showTechnicians
+                // Mostrar os Cards, vai deixar o Form do Card e o técnicos no false
+                this.showCard = false
+                this.show = false
             }
+
         },
 
         props: {
@@ -77,6 +111,8 @@
 
         components: {
             FormReport,
+            CardsView,
+            TecnicsView
 
         },  
        

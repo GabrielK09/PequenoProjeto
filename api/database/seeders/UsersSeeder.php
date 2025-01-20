@@ -50,8 +50,8 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('1'),
             ],
             [
-                'name' => 'Colla',
-                'login' => 'colla',
+                'name' => 'Rebocada',
+                'login' => 'reboco',
                 'password' => Hash::make('1'),
             ]
         ];

@@ -14,6 +14,11 @@ class CardController extends Controller
         $this->cardService = $cardService;
     }
 
+    public function all()
+    {
+        return $this->cardService->all();
+    }
+
     public function create(Request $request)
     {        
         $data = $request->validate([
@@ -35,15 +40,12 @@ class CardController extends Controller
         $data = $request->validate([
             'user_id' => 'required',
             'title' => 'required',
-            'group' => 'required',
-            'contact' => 'required',
+            'group' => 'nullable|required_without:contact',
+            'contact' => 'nullable|required_without:group',
+            'status' => 'required',
             'description' => 'required',
             'status' => 'required',
-            'file' => 'required',
 
        ]);
-       
-      
-
     }
 }

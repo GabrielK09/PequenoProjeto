@@ -1,1 +1,0 @@
-O nome ou razão social do prestador não deve ser informado quando o emitente da DPS for o próprio prestador
