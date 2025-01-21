@@ -78,7 +78,7 @@ class UserRepository implements UserInterface
 
     public function getCalls(int $id)
     {
-        return Users::where('id', $id)->first()->call;
+        return Users::where('id', $id)->first();
     }
 
     public function filterCalls(array $data,int $id)
