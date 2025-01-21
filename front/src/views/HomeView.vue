@@ -1,7 +1,7 @@
 <template>  
   <div class="p-4 sm:ml-32">
-    <header class="flex bg-gray-800 p-4">
-      <h1 class="text-white text-xl">ClickUp Grupo Roxo, Olá {{ user }}</h1>
+    <header class="flex bg-gray-600 p-4 w-full">
+      <h1 class="text-white text-xl">ClickUp Grupo <span class="text-purple-700">Roxo</span>, Olá {{ user }}</h1>
 
     </header>
   
@@ -9,10 +9,7 @@
       :user_id="this.user_id"
     
     /> 
-    <div class="">
-      <button @click="add">Call</button>
-
-    </div>
+    
   </div>
 </template>
 
@@ -58,18 +55,7 @@
         }
 
       },
-      
-      async add(){
-        try {
-          const response = await axios.put(`${this.api}/call/add/${this.user_id}`, {
-            call: 1
-          })
-          console.log(response)          
-        } catch (error) {
-          console.error(error)          
-        }
 
-      }
     },
     mounted()
     {

@@ -1,6 +1,15 @@
 <template>
-    <h1>Calls</h1>
-    <h3>Total de ligações: {{ total_calls }}</h3>
+    <h3>Seu total de ligações: {{ total_calls }}</h3>
+
+    <div>
+        <button
+            @click="add"
+            class="rounded-lg text-white bg-indigo-600  p-2"
+        >
+            Adicionar Ligação
+        </button>
+
+    </div>
 
     <form @submit.prevent="filterCalls">
         <label for="start">Data Inicial:</label>
@@ -20,8 +29,9 @@
         <button type="submit">Filtrar</button>
     </form>
 
+    
+
     <div v-if="total_filter_calls > 0">Todas as ligações do perído: {{ form.start }} até {{ form.end }}: {{ total_filter_calls }}</div>
-    <div v-else>Sem ligações</div>
 
 </template>
 
@@ -67,8 +77,24 @@
                 }
                 
                 this.total_filter_calls = response.data.filter
-            }
+            },
 
+            async add(){
+                try {
+                    const response = await axios.put(`${this.api}/call/add/${this.user_id}`, {
+                        call: 1
+                    })
+                    
+                    if(response.data.success === true)
+                    {
+                        this.getCalls()
+                    }
+
+                } catch (error) {
+                    console.error(error)          
+
+                }
+            }
         },
 
         props: {

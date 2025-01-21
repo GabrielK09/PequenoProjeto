@@ -1,6 +1,6 @@
 <template>
-    <h1>technicians</h1>
-    <div>
+    <h1>Técnicos</h1>
+    <div class="">
         <div v-for="technic in technicians">
             Técnico: {{ technic.name }} |
             Ligações: {{ technic.call }}

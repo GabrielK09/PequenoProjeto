@@ -72,6 +72,7 @@ class UserRepository implements UserInterface
         ]);
         
         $user->save();
+        return $user->call;
     }
 
 

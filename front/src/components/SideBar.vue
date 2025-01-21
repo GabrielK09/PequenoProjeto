@@ -3,7 +3,7 @@
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <ul class="space-y-2 font-medium text-base">
                 <li>
-                    <span class="flex p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">              
+                    <span class="flex p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-slate-600">              
                         <button 
                             @click="report()"
                             class="ml-4"
@@ -16,7 +16,7 @@
                 </li>
                 
                 <li>
-                    <span class="flex p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">              
+                    <span class="flex p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-slate-600">              
                         <button 
                             @click="cards()"
                             class="ml-4"
@@ -30,7 +30,7 @@
                 </li>
 
                 <li>
-                    <span class="flex p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">              
+                    <span class="flex p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-slate-600">              
                         <button 
                             @click="technicians"
                             class="ml-4"
@@ -43,7 +43,7 @@
                 </li>
 
                 <li>
-                    <span class="flex p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">              
+                    <span class="flex p-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-slate-600">              
                         <button 
                             @click="calls"
                             class="ml-4"

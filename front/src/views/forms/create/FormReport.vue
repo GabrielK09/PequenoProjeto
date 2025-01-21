@@ -1,8 +1,8 @@
 <template>
     <div class="mt-5 w-full max-w-xs">
-        <form @submit.prevent="submitForm" class="bg-gray-600 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form @submit.prevent="submitForm" class="bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-2">
-                <label class="block text-white text-sm font-bold mb-2">Título do card: </label>
+                <label class="block text-white text-sm font-bold mb-2">Título: </label>
                 <input 
                     type="text" 
                     class="shadow appearance-none border rounded w-full py-2 px-1 leading-tight focus:outline-none focus:shadow-outline"
@@ -38,15 +38,15 @@
             </div>
             
             <div class="mb-2">
-                <select class="shadow border rounded py-2 px-1" v-model="form.group">
-                    <option value="" disabled selected>Selecione o Grupo</option>
+                <select class="appearance-none w-full rounded py-2 px-1" v-model="form.group">
+                    <option :value="''" selected>Selecione o Grupo</option>
                     <option :value="'Alpes'">Alpes</option>
                     <option :value="'Hugo - Aguia'">Hugo - Aguia</option>
                 </select>
             </div>
 
             <div class="max-w-40">
-                <label for="fileUpload" class="block text-white text-xl py-2 font-bold rounded cursor-pointer hover:bg-gray-400 w-40">Enviar arquivo</label>
+                <label for="fileUpload" class="block text-white text-base py-2 font-bold rounded cursor-pointer hover:bg-gray-400 w-40">Enviar arquivo</label>
                 <input
                     id="fileUpload"
                     type="file"
@@ -135,7 +135,7 @@ import axios from 'axios';
                     alert('Card criado com successo!')
                     this.message = ''
                     console.log(response.data.success)
-                    
+                    this.form = ''
                 }
                 console.log('Response', response)
             }
