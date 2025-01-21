@@ -53,40 +53,72 @@ class UserRepository implements UserInterface
         ]);
     }
     
-    public function call(int $call, int $id)
+    public function callInput(int $call, int $id)
     {
         $user = $this->findByID($id);
-        $calls = $user->call + $call;
+        $calls = $user->total_call_input + $call;
 
         $user::where('id', $id)->update([
-            'call' => $calls
+            'total_call_input' => $calls,
 
         ]);
 
         Calls::create([
             'user_id' => $user->id,
             'user' => $user->name,
-            'before_call' => $user->call,
-            'after_call' => $calls,
+            'before_call_input' => $user->total_call_input,
+            'after_call_input' => $calls,
             'period' => $user->updated_at
+
         ]);
         
         $user->save();
-        return $user->call;
+        return $user->total_call_input;
+    }
+
+    public function callExit(int $call, int $id)
+    {
+        $user = $this->findByID($id);
+        $calls = $user->total_call_exit + $call;
+
+        $user::where('id', $id)->update([
+            'total_call_exit' => $calls,
+
+        ]);
+
+        Calls::create([
+            'user_id' => $user->id,
+            'user' => $user->name,
+            'before_call_exit' => $user->total_call_exit,
+            'after_call_exit' => $calls,
+            'period' => $user->updated_at
+
+        ]);
+        
+        $user->save();
+        return $user->total_call_exit;
     }
 
 
     public function getCalls(int $id)
     {
-        return Users::where('id', $id)->first()->call;
+        $user = Users::where('id', $id)->first();
+        $total_call = $user->total_call_input + $user->total_call_exit;
+        $user->update([
+            'total_call' => $total_call
+        ]);
+        $user->save();
+        return $user->total_call;
+        
     }
 
     public function filterCalls(array $data,int $id)
     {
-        $filter = Calls::latest('id', $id)
+        $filter = Calls::latest('id', $id) //select after_call from calls where id = 1 order by id limit 1
                     ->orWhereBetween('period', [$data['start'], $data['end']])
                     ->first()
                     ->after_call;
+
         if($filter != null)
         {
             return $filter;

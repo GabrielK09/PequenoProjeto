@@ -10,6 +10,7 @@ interface UserInterface
     public function findByID(int $id);
     public function delete(int $id);
 
-    public function call(int $call, int $id);
+    public function callInput(int $call, int $id);
+    public function callExit(int $call, int $id);
     
 }

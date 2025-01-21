@@ -1,12 +1,24 @@
 <template>
     <h3>Seu total de ligações: {{ total_calls }}</h3>
+    <h3>Seu total de ligações de entrada: {{ total_calls_input }}</h3>
+    <h3>Seu total de ligações de saida: {{ total_calls_exit }}</h3>
 
     <div>
         <button
-            @click="add"
+            @click="addInput"
             class="rounded-lg text-white bg-indigo-600  p-2"
         >
-            Adicionar Ligação
+            Adicionar Ligação De Entrada
+        </button>
+
+    </div>
+
+    <div>
+        <button
+            @click="addExit"
+            class="rounded-lg text-white bg-indigo-600  p-2"
+        >
+            Adicionar Ligação De Saída
         </button>
 
     </div>
@@ -48,6 +60,8 @@
 
                 },
                 total_calls: null,
+                total_calls_input: 0,
+                total_calls_exit: null,
                 total_filter_calls: null,
                 api: process.env.VUE_APP_API_URL,
              
@@ -79,14 +93,37 @@
                 this.total_filter_calls = response.data.filter
             },
 
-            async add(){
+            async addInput(){
                 try {
-                    const response = await axios.put(`${this.api}/call/add/${this.user_id}`, {
+                    const response = await axios.put(`${this.api}/call/add_input/${this.user_id}`, {
                         call: 1
+
                     })
                     
                     if(response.data.success === true)
                     {
+                        console.log('Total ligação entrada', response.data.call)
+                        this.total_calls_input = response.data.call
+                        this.getCalls()
+                    }
+
+                } catch (error) {
+                    console.error(error)          
+
+                }
+            },
+
+            async addExit(){
+                try {
+                    const response = await axios.put(`${this.api}/call/add_exit/${this.user_id}`, {
+                        call: 1
+
+                    })
+                    
+                    if(response.data.success === true)
+                    {
+                        console.log('Total ligação saida', response.data.call)
+                        this.total_calls_exit = response.data.call
                         this.getCalls()
                     }
 
@@ -112,7 +149,17 @@
         mounted(){
             this.getCalls()
         
-            console.log(this.user_id)   
+            if(this.$route.name !== "Home")
+            {
+                console.log('Vai redirecionar para Home')
+                this.$router.push({
+                    name: "Home",
+                    params: {
+                        user_id: this.user_id,
+
+                    }
+                })
+            }
         }
     }
 

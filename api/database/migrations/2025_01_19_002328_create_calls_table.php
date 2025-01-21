@@ -17,8 +17,12 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('user', 100);
             $table->date('period');
-            $table->integer('before_call');
-            $table->integer('after_call');
+
+            $table->integer('before_call_input')->nullable()->default(0);
+            $table->integer('after_call_input')->nullable()->default(0);
+
+            $table->integer('before_call_exit')->nullable()->default(0);
+            $table->integer('after_call_exit')->nullable()->default(0);
             $table->timestamps();
         });
     }

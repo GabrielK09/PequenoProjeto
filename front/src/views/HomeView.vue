@@ -37,12 +37,18 @@
         type: String,
         required: true
 
+      },
+      leader: {
+        type: String,
+        required: true
+
       }
     },
     methods: {
       async getUser()
       {
         try {
+          console.log(this.leader)
           const userData = await axios.get(`${this.api}/user/${this.user_id}`)
           this.user = userData.data.name
           if(userData.data.name === undefined || userData.data.name === null)
