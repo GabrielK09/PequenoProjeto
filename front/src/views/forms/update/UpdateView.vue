@@ -1,6 +1,6 @@
 <template>
     <div class="p-4 sm:ml-32">
-        <header class="flex bg-gray-800 p-4">
+        <header class="flex bg-purple1 p-4">
             <h1 class="text-white text-xl">Usuário: {{ user }} está editando</h1>
 
         </header>

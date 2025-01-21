@@ -60,7 +60,7 @@ class UserController extends Controller
         return $this->userService->call($request->input('call'), $id);
     }
 
-    public function getCalls(Request $request, int $id)
+    public function getCalls(int $id)
     {
         return $this->userService->getCalls($id);
 

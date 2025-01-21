@@ -8,6 +8,10 @@ module.exports = {
     presets: [],
     darkMode: "media", // or 'class'
     theme: {
+      extend: {
+        customPurple1: '#470d85',
+        purple2: '#670fbf',
+      },
       accentColor: ({ theme }) => ({
         ...theme("colors"),
         auto: "auto",
