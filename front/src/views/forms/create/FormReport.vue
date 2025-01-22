@@ -55,6 +55,7 @@
                     id="fileUpload"
                     type="file"
                     class="hidden"
+                    multiple
                     @change="handleFileUpload($event)"
                 
                 />
@@ -81,7 +82,8 @@ import axios from 'axios';
                     description: '',
                     group: '',
                     contact: '',
-                    file: ''
+                    file: '',
+                    status: 'Pendente',
                 },
                 
                 message: null,
@@ -138,6 +140,7 @@ import axios from 'axios';
                     form.append("group", this.form.group)
                     form.append("contact", this.form.contact)
                     form.append("file", this.form.file)
+                    form.append("status", this.form.status)
 
                     console.log(form)
                     const response = await axios.post(`${this.api}/create-card`, form)

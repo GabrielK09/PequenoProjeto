@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interface;
 
-interface CardInterface
+interface Cards
 {
     public function create(array $data, string $file_path);
     public function update(array $data, int $id);

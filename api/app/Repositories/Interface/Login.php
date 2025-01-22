@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interface;
 
-interface LoginInterface
+interface Login
 {
     public function find(string $param);
 

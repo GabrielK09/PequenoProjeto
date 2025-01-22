@@ -3,9 +3,9 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Users;
-use App\Repositories\Interface\LoginInterface;
+use App\Repositories\Interface\Login;
 
-class LoginRepository implements LoginInterface
+class LoginRepository implements Login
 {
     public function find(string $param)
     {

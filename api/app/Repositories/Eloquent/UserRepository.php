@@ -3,11 +3,11 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Calls;
-use App\Repositories\Interface\UserInterface;
+use App\Repositories\Interface\User;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
 
-class UserRepository implements UserInterface
+class UserRepository implements User
 {
     public function all()
     {

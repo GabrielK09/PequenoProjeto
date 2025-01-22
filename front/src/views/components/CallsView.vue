@@ -82,7 +82,7 @@
                 this.total_calls = response.data.calls.total_call
                 this.total_calls_input = response.data.calls.total_call_input
                 this.total_calls_exit = response.data.calls.total_call_exit
-                
+
             },
 
             async filterCalls(){

@@ -40,6 +40,22 @@ class CardService
         }
     }
 
+    public function update(array $data, int $id)
+    {
+        try {
+            $this->repository->update($data, $id);
+            
+            return response()->json([
+                'success' => true,
+                'update' => $this->repository->findByID($id)
+                
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return $this->returnResponseTh($th);
+        }
+    }
+
     public function create(array $data)
     {
         try {
@@ -58,28 +74,11 @@ class CardService
         
     }
 
-    public function update(array $data, int $id)
-    {
-        try {
-            $this->repository->update($data, $id);
-            
-            return response()->json([
-                'success' => true,
-                'update' => $this->repository->findByID($id)
-                
-            ], 200);
-
-        } catch (\Throwable $th) {
-            return $this->returnResponseTh($th);
-        }
-    }
-
     public function archiveFile(object $file, int $id, string $group, string $description)
     {
         try {
             $directory = public_path('casos_roxo/' . $this->userRepository->findByID($id)->name . '/' . $group);
             $name = $file->getClientOriginalName();
-            //$extension = $file->getClientOriginalExtension();
 
             if(!is_dir($directory))
             {

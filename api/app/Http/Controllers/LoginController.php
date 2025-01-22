@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use App\Services\LoginService;
 
-use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     protected $loginService;
@@ -14,13 +14,9 @@ class LoginController extends Controller
         $this->loginService = $loginService;
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {    
-        $data = $request->validate([
-            'login' => 'required',
-            'password' => 'required',
-
-        ]);
+        $data = $request->validated();
         return $this->loginService->login($data);
     }
 }

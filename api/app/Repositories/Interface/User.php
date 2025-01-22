@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interface;
 
-interface UserInterface
+interface User
 {
     public function all();
     public function create(array $data);

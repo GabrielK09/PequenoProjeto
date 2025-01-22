@@ -4,10 +4,10 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Card;
 use App\Models\CardAlteration;
-use App\Repositories\Interface\CardInterface;
+use App\Repositories\Interface\Cards;
 use App\Services\UserService;
 
-class CardRepository implements CardInterface
+class CardRepository implements Cards
 {
     protected $userService;
     public function __construct(UserService $userService)

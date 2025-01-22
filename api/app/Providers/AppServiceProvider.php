@@ -5,9 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 
 use App\Repositories\Interface\{
-    LoginInterface,
-    CardInterface,
-    UserInterface
+    Login,
+    Cards,
+    User
 };
 
 use App\Repositories\Eloquent\{
@@ -22,9 +22,9 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->bind(UserInterface::class, UserRepository::class);
-        $this->app->bind(LoginInterface::class, LoginRepository::class);
-        $this->app->bind(CardInterface::class, CardRepository::class);
+        $this->app->bind(User::class, UserRepository::class);
+        $this->app->bind(Login::class, LoginRepository::class);
+        $this->app->bind(Cards::class, CardRepository::class);
 
     }
     

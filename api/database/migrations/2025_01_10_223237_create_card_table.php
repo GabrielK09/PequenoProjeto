@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('description', 255);
             $table->string('group', 100)->nullable();
             $table->string('contact', 100)->nullable();
-            $table->string('status', 120)->default('Pendente');
+            $table->string('status', 120);
             $table->string('file_path', 150);
             $table->timestamps();
         });
