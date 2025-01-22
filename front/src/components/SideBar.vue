@@ -70,11 +70,13 @@
       :user_id="this.user_id"
     />
 
-    <TecnicsView
-      v-if="this.showTechnicians"
-      :showTechnicians="this.showTechnicians"
+    <div>
+        <TecnicsView
+        v-if="this.showTechnicians"
+        :showTechnicians="this.showTechnicians"
 
-    />
+        />
+    </div>
 
     <CallsView 
       v-if="showCalls"

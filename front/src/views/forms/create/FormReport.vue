@@ -38,11 +38,15 @@
             </div>
             
             <div class="mb-2">
-                <select class="appearance-none w-full rounded py-2 px-1" v-model="form.group">
-                    <option :value="''" selected>Selecione o Grupo</option>
-                    <option :value="'Alpes'">Alpes</option>
-                    <option :value="'Hugo - Aguia'">Hugo - Aguia</option>
-                </select>
+                <label class="block text-white text-sm font-bold mb-2">Grupo: </label>
+                <input 
+                    type="text" 
+                    class="shadow appearance-none border rounded w-full py-2 px-1 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="..."
+                    maxlength="100"
+                    v-model="form.group"
+                    
+                />
             </div>
 
             <div class="max-w-40">
@@ -79,6 +83,7 @@ import axios from 'axios';
                     contact: '',
                     file: ''
                 },
+                
                 message: null,
                 api: process.env.VUE_APP_API_URL
 
@@ -100,44 +105,55 @@ import axios from 'axios';
 
         methods: {
             handleFileUpload(event) {
-                const file_ = event.target.files[0];
-                const extension = file_.name.split('.').pop().toLowerCase()
-                console.log(extension)
-                console.log(file_)
-                if (file_ ) {
-                    if(["rar", "zip", "sql", "fdb", "txt"].includes(extension)){
-                        this.form.file = file_;
-                        this.message = null;
+                try {
+                    const file_ = event.target.files[0];
+                    const extension = file_.name.split('.').pop().toLowerCase()
+                    console.log(extension)
+                    console.log(file_)
+                    if (file_) {
+                        if(["rar", "zip", "sql", "fdb", "txt"].includes(extension)){
+                            this.form.file = file_;
+                            this.message = null;
 
-                    } else {
-                        this.message = "Por favor, envie um arquivo RAR/SQL/FDB/TXT.";
-                        this.form.file = null;
+                        } else {
+                            this.message = "Por favor, envie um arquivo RAR/SQL/FDB/TXT.";
+                            this.form.file = null;
 
-                    }
+                        }
+                        
+                    }     
+                } catch (error) {
                     
-                } 
+                }
+                
             },
             async submitForm(){
-                this.message = 'Carregando...'
-                const form = new FormData()
+                try {
+                    this.message = 'Carregando...'
+                    const form = new FormData()
 
-                form.append("user_id", this.user_id)
-                form.append("title", this.form.title)
-                form.append("description", this.form.description)
-                form.append("group", this.form.group)
-                form.append("contact", this.form.contact)
-                form.append("file", this.form.file)
+                    form.append("user_id", this.user_id)
+                    form.append("title", this.form.title)
+                    form.append("description", this.form.description)
+                    form.append("group", this.form.group)
+                    form.append("contact", this.form.contact)
+                    form.append("file", this.form.file)
 
-                console.log(form)
-                const response = await axios.post(`${this.api}/create-card`, form)
-                if(response.data.success === 'true')
-                {
-                    alert('Card criado com successo!')
-                    this.message = ''
-                    console.log(response.data.success)
-                    this.form = ''
+                    console.log(form)
+                    const response = await axios.post(`${this.api}/create-card`, form)
+                    if(response.data.success === 'true')
+                    {
+                        alert('Card criado com successo!')
+                        this.message = ''
+                        console.log(response.data.success)
+                        this.form = ''
+                    }
+                    console.log('Response', response)
+                } catch (error) {
+                    alert('Erro ao criar o Card')
+                    console.error('Erro ao criar o card', error)        
                 }
-                console.log('Response', response)
+                    
             }
         },
 

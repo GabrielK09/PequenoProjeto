@@ -34,7 +34,7 @@ class LoginService
                     'success' => true,
                     'message' => 'Login bem sucedido',
                     'user_id' => $user->id,
-                    'user_leader' => $user->leader
+                    'leader' => $user->leader
 
                 ]);
             }

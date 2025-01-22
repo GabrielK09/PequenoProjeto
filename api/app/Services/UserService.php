@@ -101,12 +101,26 @@ class UserService
         }
     }
 
-    public function call(int $call, int $id)
+    public function callInput(int $call, int $id)
     {
         try {
             return response()->json([
                 'success' => true,
-                'call' => $this->repository->call($call, $id)
+                'call' => $this->repository->callInput($call, $id)
+            ]);
+
+        } catch (\Throwable $th) {
+            return $this->returnResponseTh($th);
+
+        }
+    }
+
+    public function callExit(int $call, int $id)
+    {
+        try {
+            return response()->json([
+                'success' => true,
+                'call' => $this->repository->callExit($call, $id)
             ]);
 
         } catch (\Throwable $th) {
@@ -120,7 +134,8 @@ class UserService
         try {
             return response()->json([
                 'success' => true,
-                'calls' => $this->repository->getCalls($id)
+                'calls' => $this->repository->getCalls($id),
+                
             ]);
         } catch (\Throwable $th) {
             return $this->returnResponseTh($th);

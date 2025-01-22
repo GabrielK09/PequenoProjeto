@@ -11,7 +11,9 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name', 40);
-            $table->bigInteger('call')->default(0);
+            $table->bigInteger('total_call')->default(0);
+            $table->bigInteger('total_call_input')->default(0);
+            $table->bigInteger('total_call_exit')->default(0);
             $table->string('login', 40);
             $table->string('password', 60);
             $table->boolean('active', 1)->default(1);

@@ -67,9 +67,14 @@
 
                     if(response.data.success === true)
                     {
+                        console.log('leader', response.data.leader)
                         this.$router.push({ 
                             name: 'Home',
-                            params: { user_id: response.data.user_id } 
+                            params: { 
+                                user_id: response.data.user_id,
+                                leader: response.data.leader
+
+                            } 
 
                         })
 

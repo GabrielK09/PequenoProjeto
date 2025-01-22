@@ -11,8 +11,13 @@ class Calls extends Model
     protected $fillable = [
         'user_id',
         'user',
-        'before_call',
-        'after_call',
+
+        'before_call_exit',
+        'after_call_exit',
+
+        'before_call_input',
+        'after_call_input',
+        
         'period'
     ];
 }

@@ -10,7 +10,9 @@ class Users extends Model
 
     protected $fillable = [
         'name',
-        'call',
+        'total_call',
+        'total_call_input',
+        'total_call_exit',
         'login',
         'password',
         'leader',
