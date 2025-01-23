@@ -3,7 +3,7 @@
     <div class="">
         <div v-for="technic in technicians">
             Técnico: {{ technic.name }} |
-            Ligações: {{ technic.call }}
+            Ligações: {{ technic.total_call }}
         </div>
     </div>
 </template> 

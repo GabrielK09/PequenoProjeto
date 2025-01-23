@@ -57,7 +57,7 @@
     import axios from 'axios';
     
     export default {
-        name: "CallsView",
+    name: "CallView",
         data(){
             return {
                 form: {

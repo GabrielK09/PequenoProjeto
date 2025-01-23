@@ -78,7 +78,7 @@
         />
     </div>
 
-    <CallsView 
+    <CallView 
       v-if="showCalls"
       :showCalls="this.showCalls"
       :user_id="this.user_id"
@@ -87,7 +87,7 @@
 </template>
 
 <script>
-    import CallsView from '@/views/components/CallsView.vue';
+    import CallView from '@/views/components/CallView.vue';
     import CardsView from '@/views/components/CardsView.vue';
     import TecnicsView from '@/views/components/TecnicsView.vue';
     import FormReport from '@/views/forms/create/FormReport.vue';
@@ -149,7 +149,7 @@
             FormReport,
             CardsView,
             TecnicsView,
-            CallsView
+            CallView
 
         },
     }

@@ -7,14 +7,18 @@ const routes = [
   {
     path: '/',
     name: 'Login',
-    component: LoginView
+    component: LoginView,
     
   },
   {
     path: '/home/:user_id',
     name: 'Home',
     component: HomeView,
-    props: true,
+    props: route => ({
+      user_id: route.params.user_id,
+      leader: route.params.leader
+      
+    }),
         
   },
   { 

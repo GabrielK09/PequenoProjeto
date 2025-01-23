@@ -40,7 +40,7 @@
             return {
                 login: null,
                 password: null,
-                message: null,
+                message: null || this.$route.query.message,
 
                 api: process.env.VUE_APP_API_URL
             }
@@ -53,7 +53,6 @@
                     const data = {
                         login: this.login,
                         password: this.password,
-                        message: this.message
 
                     }
                     
@@ -63,17 +62,15 @@
                     if(response.data.success === false)
                     {
                         this.message = response.data.message
+                        console.log(response.data)
                     }
 
                     if(response.data.success === true)
                     {
-                        console.log('leader', response.data.leader)
                         this.$router.push({ 
                             name: 'Home',
                             params: { 
-                                user_id: response.data.user_id,
-                                leader: response.data.leader
-
+                                user_id: response.data.user_id
                             } 
 
                         })
@@ -81,7 +78,7 @@
                     }                    
 
                 } catch (error) {
-                    console.error('Erro ao fazer login', error)
+                    console.error('Erro interno ao fazer login', error)
                     
                 }
             }

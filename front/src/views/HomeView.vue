@@ -7,7 +7,7 @@
   
     <SideBar
       :user_id="this.user_id"
-    
+      
     /> 
     
   </div>
@@ -38,17 +38,11 @@
         required: true
 
       },
-      leader: {
-        type: String,
-        required: true
-
-      }
     },
     methods: {
       async getUser()
       {
         try {
-          console.log(this.leader)
           const userData = await axios.get(`${this.api}/user/${this.user_id}`)
           this.user = userData.data.name
           if(userData.data.name === undefined || userData.data.name === null)
@@ -57,7 +51,8 @@
 
           } 
         } catch (error) {
-          
+          console.error('Erro ao carregar usuário')
+
         }
 
       },
@@ -65,8 +60,15 @@
     },
     mounted()
     {
-      this.getUser()
+      if(!this.user_id)
+      {
+        console.log(this.user_id)
+        
+        this.$router.push({ name: "Login", query: { message: "Dados ausentes" } })  
+      } else {
+        this.getUser()
 
+      }
     }
   }
 </script>

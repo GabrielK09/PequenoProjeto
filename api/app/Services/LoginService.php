@@ -28,6 +28,25 @@ class LoginService
     {
         try {
             $user = $this->repository->find($data['login']);
+
+            if(empty($user))
+            {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Usuário não encontrado',
+                    
+                ]);
+            }
+
+            if($user->active == 0)
+            {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Usuário desativado',
+                    
+                ]);
+            }   
+
             if($user && Hash::check($data['password'], $user->password))
             {
                 return response()->json([
@@ -37,13 +56,7 @@ class LoginService
                     'leader' => $user->leader
 
                 ]);
-            }
-
-            return response()->json([
-                'success' => false,
-                'message' => 'O login falhou'
-                
-            ]);
+            }            
 
         } catch (\Throwable $th) {
             return $this->returnResponseTh($th);
