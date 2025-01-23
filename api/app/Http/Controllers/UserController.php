@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -19,28 +20,17 @@ class UserController extends Controller
         return $this->userService->all();
     }
 
-    public function create(Request $request)
+    public function create(UserRequest $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string',
-            'login' => 'required',
-            'password' => 'required'
-
-        ]);
+        $data = $request->validated();
     
         return $this->userService->create($data);
 
     }
 
-    public function update(Request $request, int $id)
+    public function update(UserRequest $request, int $id)
     {
-        $data = $request->validate([
-            'name' => 'required|string',
-            'call' => 'required|string',
-            'login' => 'required|string',
-            'password' => 'required|string'
-
-        ]);
+        $data = $request->validated();
         
     return $this->userService->update($data, $id);
     }

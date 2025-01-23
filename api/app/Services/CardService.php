@@ -58,8 +58,9 @@ class CardService
 
     public function create(array $data)
     {
-        try {
+        /*try {
             $file_path = $this->archiveFile($data['file'], $data['user_id'], $data['group'] ?? $data['contact'], $data['description']);
+
             $card = $this->repository->create($data, $file_path);
 
             return response()->json([
@@ -70,12 +71,22 @@ class CardService
 
         } catch (\Throwable $th) {
             return $this->returnResponseTh($th);
-        }
+        }/*/
+            $file_path = $this->archiveFile($data['file'], $data['user_id'], $data['group'] ?? $data['contact'], $data['description']);
+
+            $card = $this->repository->create($data, $file_path);
+
+            return response()->json([
+                'success' => $card['success'],
+                'message' => $card
+
+            ], 200);
         
     }
 
     public function archiveFile(object $file, int $id, string $group, string $description)
     {
+        
         try {
             $directory = public_path('casos_roxo/' . $this->userRepository->findByID($id)->name . '/' . $group);
             $name = $file->getClientOriginalName();
@@ -94,7 +105,14 @@ class CardService
             return $path->getPathname();
 
         } catch (\Throwable $th) {
-            return $this->returnResponseTh($th);
+            return response()->json([
+                'success' => false,
+                'th' => $th->getMessage(),
+                'line' => $th->getLine(),
+                'file' => $th->getfile(),
+    
+            ], 400);
+
         }
     }
 }

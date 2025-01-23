@@ -57,10 +57,12 @@ class UserRepository implements User
     {
         $user = Users::where('id', $id)->first();
         $total_call = $user->total_call_input + $user->total_call_exit;
+
         $user->update([
             'total_call' => $total_call
         ]);
         $user->save();
+
         return $user;
         
     }

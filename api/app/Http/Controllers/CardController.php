@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CardRequest;
 use App\Services\CardService;
+use Illuminate\Http\Request;
 
 class CardController extends Controller
 {   
@@ -19,9 +20,19 @@ class CardController extends Controller
         return $this->cardService->all();
     }
 
-    public function create(CardRequest $request)
+    public function create(Request $request)
     {        
-        $data = $request->validated();
+        //return response()->json($request->file('file')->getFilename());
+        $data = $request->validate([
+            'user_id' => 'required',
+            'title' => 'required',
+            'group' => 'nullable|required_without:contact',
+            'contact' => 'nullable|required_without:group',
+            'description' => 'required',
+            'file' => 'required',
+            'status' => 'required',
+
+        ]);
         return $this->cardService->create($data);
 
     }

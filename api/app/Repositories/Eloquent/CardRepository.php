@@ -40,7 +40,6 @@ class CardRepository implements Cards
     public function create(array $data, string $file_path)
     {
         try {
-            
             $user = $this->userService->findByID($data['user_id']);
             Card::create([
                 'user_id' => $user->id,

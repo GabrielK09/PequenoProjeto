@@ -67,7 +67,7 @@
 
                 },
                 total_calls: null,
-                total_calls_input: 0,
+                total_calls_input: null,
                 total_calls_exit: null,
 
                 total_filter_calls: null,
@@ -78,32 +78,45 @@
 
         methods: {
             async getCalls(){
-                const response = await axios.get(`${this.api}/call/all/${this.user_id}`);
-                this.total_calls = response.data.calls.total_call
-                this.total_calls_input = response.data.calls.total_call_input
-                this.total_calls_exit = response.data.calls.total_call_exit
+                try {                    
+                    const response = await axios.get(`${this.api}/call/all/${this.user_id}`);
+                    this.total_calls = response.data.calls.total_call
+                    this.total_calls_input = response.data.calls.total_call_input
+                    this.total_calls_exit = response.data.calls.total_call_exit
+                    
+                    console.log('getCalls ', response, 'rota', this.api, 'rota', this.api)
+
+                } catch (error) {
+                    console.error('erro: getCalls ', error)
+                }
 
             },
 
             async filterCalls(){
-                const form = new FormData
+                try {                    
+                    const form = new FormData
 
-                form.append('start', this.form.start)
-                form.append('end', this.form.end)
+                    form.append('start', this.form.start)
+                    form.append('end', this.form.end)
 
-                console.log(this.form)
-                const response = await axios.post(`${this.api}/call/filter/${this.user_id}`, this.form);
-                console.log(response.data.filter)
+                    console.log(this.form)
+                    const response = await axios.post(`${this.api}/call/filter/${this.user_id}`, this.form);
+                    console.log(response.data.filter)
 
-                if(response.data.filter === null)
-                {
-                    alert('Sem ligações para esse período')
+                    if(response.data.filter === null)
+                    {
+                        alert('Sem ligações para esse período')
+                    }
+                    console.log('Ligação de entrada: ', response.data.filter.after_call_input)
+                    console.log('Ligação de saida: ', response.data.filter.after_call_exit)
+                    
+                    this.total_calls_input = response.data.filter.after_call_input
+                    this.total_calls_exit = response.data.filter.after_call_exit 
+
+                } catch (error) {
+                    console.log('erro: filterCalls ',error)
+
                 }
-                console.log('Ligação de entrada: ', response.data.filter.after_call_input)
-                console.log('Ligação de saida: ', response.data.filter.after_call_exit)
-                
-                this.total_calls_input = response.data.filter.after_call_input
-                this.total_calls_exit = response.data.filter.after_call_exit
             
             },
 
@@ -120,7 +133,7 @@
                     }
 
                 } catch (error) {
-                    console.error(error)          
+                    console.error('erro: addInput ', error)          
 
                 }
             },
@@ -138,7 +151,7 @@
                     }
 
                 } catch (error) {
-                    console.error(error)          
+                    console.error('erro: addExit ', error)                   
 
                 }
             }

@@ -1,7 +1,7 @@
 <template>  
   <div class="p-4 sm:ml-32">
     <header class="flex bg-gray-600 p-4 w-full">
-      <h1 class="text-white text-xl">ClickUp Grupo <span class="text-purple-700">Roxo</span>, Olá {{ user }}</h1>
+      <h1 class="text-white text-xl">ClickUp Grupo <span class="text-purple-500">Roxo</span>, Olá {{ user }}</h1>
 
     </header>
   

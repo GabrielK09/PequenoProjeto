@@ -1,36 +1,34 @@
 <template>
     <div class="mt-5 w-full max-w-xs">
-        <form @submit.prevent="submitForm" class="bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <div class="mb-2">
-                <label class="block text-white text-sm font-bold mb-2">Título: </label>
+        <form @submit.prevent="submitForm" class="bg-gray-700 shadow-md rounded px-4 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                
                 <input 
                     type="text" 
                     class="shadow appearance-none border rounded w-full py-2 px-1 leading-tight focus:outline-none focus:shadow-outline"
-                    placeholder="..."
+                    placeholder="Título:"
                     maxlength="120"
                     v-model="form.title"
                     
                 />
             </div>
             
-            <div class="mb-2">
-                <label class="block text-white text-sm font-bold mb-2">Descrição: </label>
+            <div class="mb-4">
                 <input 
-                    type="text" 
+                    type="text"
                     class="shadow appearance-none border rounded w-full py-2 px-1 leading-tight focus:outline-none focus:shadow-outline"
-                    placeholder="..."
+                    placeholder="Descrição: "
                     maxlength="255"
                     v-model="form.description"
                     
                 />
             </div>
 
-            <div class="mb-2">
-                <label class="block text-white text-sm font-bold mb-2">Contato: </label>
+            <div class="mb-4">
                 <input 
                     type="text" 
                     class="shadow appearance-none border rounded w-full py-2 px-1 leading-tight focus:outline-none focus:shadow-outline"
-                    placeholder="..."
+                    placeholder="Contato: "
                     maxlength="100"
                     v-model="form.contact"
                     
@@ -38,11 +36,10 @@
             </div>
             
             <div class="mb-2">
-                <label class="block text-white text-sm font-bold mb-2">Grupo: </label>
                 <input 
                     type="text" 
                     class="shadow appearance-none border rounded w-full py-2 px-1 leading-tight focus:outline-none focus:shadow-outline"
-                    placeholder="..."
+                    placeholder="Grupo: "
                     maxlength="100"
                     v-model="form.group"
                     
@@ -55,7 +52,7 @@
                     id="fileUpload"
                     type="file"
                     class="hidden"
-                    multiple
+                    
                     @change="handleFileUpload($event)"
                 
                 />
@@ -82,7 +79,7 @@ import axios from 'axios';
                     description: '',
                     group: '',
                     contact: '',
-                    file: '',
+                    file: null,
                     status: 'Pendente',
                 },
                 
@@ -123,7 +120,9 @@ import axios from 'axios';
 
                         }
                         
-                    }     
+                    } else {
+                        console.log('Não tem arquivo')
+                    }
                 } catch (error) {
                     
                 }
@@ -152,9 +151,11 @@ import axios from 'axios';
                         this.form = ''
                     }
                     console.log('Response', response)
+
                 } catch (error) {
                     alert('Erro ao criar o Card')
-                    console.error('Erro ao criar o card', error)        
+                    console.log(this.form.file)
+                    console.error('Erro ao criar o card', error.response.data)        
                 }
                     
             }
