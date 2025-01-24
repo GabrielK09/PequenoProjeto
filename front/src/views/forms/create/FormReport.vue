@@ -62,8 +62,9 @@
                 Enviar
                 
             </button>
-            <p v-if="message" class="text-white"> {{ message }}</p>
+            
         </form>
+        <p v-if="message" class="text-black"> {{ message }}</p>
     </div>
 </template>
 
@@ -146,8 +147,8 @@ import axios from 'axios';
                     if(response.data.success === 'true')
                     {
                         alert('Card criado com successo!')
-                        this.message = ''
                         console.log(response.data.success)
+                        this.message = ''
                         
                     }
                     console.log('Response', response)
