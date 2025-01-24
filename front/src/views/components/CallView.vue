@@ -83,8 +83,6 @@
                     this.total_calls = response.data.calls.total_call
                     this.total_calls_input = response.data.calls.total_call_input
                     this.total_calls_exit = response.data.calls.total_call_exit
-                    
-                    console.log('getCalls ', response, 'rota', this.api, 'rota', this.api)
 
                 } catch (error) {
                     console.error('erro: getCalls ', error)
@@ -107,8 +105,6 @@
                     {
                         alert('Sem ligações para esse período')
                     }
-                    console.log('Ligação de entrada: ', response.data.filter.after_call_input)
-                    console.log('Ligação de saida: ', response.data.filter.after_call_exit)
                     
                     this.total_calls_input = response.data.filter.after_call_input
                     this.total_calls_exit = response.data.filter.after_call_exit 

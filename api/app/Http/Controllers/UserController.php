@@ -47,12 +47,18 @@ class UserController extends Controller
     
     public function callInput(Request $request, int $id)
     {
-        return $this->userService->callInput($request->input('call'), $id);
+        if($request->has('call'))
+        {
+            return $this->userService->callInput($request->input('call'), $id);                             
+        }
     }
 
     public function callExit(Request $request, int $id)
     {
-        return $this->userService->callExit($request->input('call'), $id);
+        if($request->has('call'))
+        {
+            return $this->userService->callExit($request->input('call'), $id);
+        }    
     }
 
     public function getCalls(int $id)

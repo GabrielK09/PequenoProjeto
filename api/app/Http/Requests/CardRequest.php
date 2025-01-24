@@ -21,6 +21,12 @@ class CardRequest extends FormRequest
      */
     public function rules(): array
     {
+        $rules = [];
+        if($this->has('status'))
+        {
+            $rules['status'] = 'required';
+
+        }
         return [
             'user_id' => 'required',
             'title' => 'required',
@@ -28,7 +34,8 @@ class CardRequest extends FormRequest
             'contact' => 'nullable|required_without:group',
             'description' => 'required',
             'file' => 'required',
-            'status' => 'required',
+            
         ];
+        
     }
 }

@@ -20,19 +20,10 @@ class CardController extends Controller
         return $this->cardService->all();
     }
 
-    public function create(Request $request)
+    public function create(CardRequest $request)
     {        
         //return response()->json($request->file('file')->getFilename());
-        $data = $request->validate([
-            'user_id' => 'required',
-            'title' => 'required',
-            'group' => 'nullable|required_without:contact',
-            'contact' => 'nullable|required_without:group',
-            'description' => 'required',
-            'file' => 'required',
-            'status' => 'required',
-
-        ]);
+        $data = $request->validated();
         return $this->cardService->create($data);
 
     }

@@ -24,4 +24,7 @@ Route::prefix('v1')->group( function (){
 
     Route::post('/login', [LoginController::class, 'login']);
  
+    Route::get('/phpinfo', function () {
+        phpinfo();
+    });
 });

@@ -21,11 +21,18 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $rules = [];
+
+        if($this->has('call')){
+            $rules['call'] = 'required|integer';
+
+        }
+        
         return [
             'name' => 'required|string',
             'login' => 'required|string',
-            'password' => 'required|string',
-            'call' => 'required|integer'
+            'password' => 'required|string'
+            
         ];
     }
 }

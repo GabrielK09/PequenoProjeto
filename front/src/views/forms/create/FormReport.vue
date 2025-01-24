@@ -79,11 +79,11 @@ import axios from 'axios';
                     description: '',
                     group: '',
                     contact: '',
-                    file: null,
-                    status: 'Pendente',
+                    file: '',
+                    status: '',
                 },
                 
-                message: null,
+                message: '',
                 api: process.env.VUE_APP_API_URL
 
             }
@@ -148,7 +148,7 @@ import axios from 'axios';
                         alert('Card criado com successo!')
                         this.message = ''
                         console.log(response.data.success)
-                        this.form = ''
+                        
                     }
                     console.log('Response', response)
 

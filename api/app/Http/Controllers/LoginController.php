@@ -19,4 +19,5 @@ class LoginController extends Controller
         $data = $request->validated();
         return $this->loginService->login($data);
     }
+
 }
