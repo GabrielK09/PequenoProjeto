@@ -117,12 +117,9 @@
             },
 
             async addInput(){
-                try {
-                    const response = await axios.put(`${this.api}/call/add_input/${this.user_id}`, {
-                        call: 1
-
-                    })
-                    
+                try {  
+                    const response = await axios.put(`${this.api}/call/add_input/${this.user_id}`)
+                    console.log(response)
                     if(response.data.success === true)
                     {
                         this.getCalls()
