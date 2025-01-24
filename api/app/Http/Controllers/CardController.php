@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CardRequest;
 use App\Services\CardService;
-use Illuminate\Http\Request;
 
 class CardController extends Controller
 {   
@@ -21,8 +20,7 @@ class CardController extends Controller
     }
 
     public function create(CardRequest $request)
-    {        
-        //return response()->json($request->file('file')->getFilename());
+    {   
         $data = $request->validated();
         return $this->cardService->create($data);
 
@@ -32,5 +30,10 @@ class CardController extends Controller
     {        
         $data = $request->validated();
         return $this->cardService->update($data, $id);
+    }
+
+    public function show(int $id)
+    {
+        return $this->cardService->show($id);
     }
 }

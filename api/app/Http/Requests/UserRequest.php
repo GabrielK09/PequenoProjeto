@@ -21,23 +21,23 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-
-        if($this->isMethod('put')){
+        if($this->isMethod('put'))
+        {
             return [
-                'name' => 'sometimes|string',
-                'login' => 'sometimes|string',
-                'password' => 'sometimes|string',
                 'call' => 'sometimes|integer',
             ];
         }
 
-        $rules = [
-            'name' => 'required|string',
-            'login' => 'required|string',
-            'password' => 'required|string'
-            
-        ];
+        if($this->isMethod('post'))
+        {
+            return [
+                'name' => 'sometimes|string',
+                'login' => 'sometimes|string',
+                'password' => 'sometimes|string',
+                'start' => 'sometimes|date',
+                'end' => 'sometimes|date'
 
-        return $rules;
+            ];
+        }
     }
 }

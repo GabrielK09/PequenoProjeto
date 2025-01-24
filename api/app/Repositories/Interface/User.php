@@ -12,5 +12,5 @@ interface User
 
     public function callInput(int $call, int $id);
     public function callExit(int $call, int $id);
-    
+        
 }

@@ -69,7 +69,11 @@ class CardRepository implements Cards
             $card = $this->findByID($id);
             $update = Card::where('id', $id)->update([
                 'title' => $data['title'],
-                ''
+                'description' => $data['description'],
+                'group' => $data['group'] ?? null,
+                'contact' => $data['contact'] ?? null,
+                'status' => $data['status']
+
             ]);
 
             CardAlteration::create([

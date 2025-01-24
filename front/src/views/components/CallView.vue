@@ -104,10 +104,12 @@
                     if(response.data.filter === null)
                     {
                         alert('Sem ligações para esse período')
+                        
                     }
                     
-                    this.total_calls_input = response.data.filter.after_call_input
-                    this.total_calls_exit = response.data.filter.after_call_exit 
+                    const total_calls_input = response.data.filter.after_call_input
+                    const total_calls_exit = response.data.filter.after_call_exit 
+                    this.total_filter_calls = total_calls_input + total_calls_exit
 
                 } catch (error) {
                     console.log('erro: filterCalls ',error)
@@ -118,7 +120,10 @@
 
             async addInput(){
                 try {  
-                    const response = await axios.put(`${this.api}/call/add_input/${this.user_id}`)
+                    const response = await axios.put(`${this.api}/call/add-input/${this.user_id}`, {
+                        call: 1
+
+                    })
                     console.log(response)
                     if(response.data.success === true)
                     {
@@ -133,7 +138,7 @@
 
             async addExit(){
                 try {
-                    const response = await axios.put(`${this.api}/call/add_exit/${this.user_id}`, {
+                    const response = await axios.put(`${this.api}/call/add-exit/${this.user_id}`, {
                         call: 1
 
                     })
@@ -142,6 +147,7 @@
                     {
                         this.getCalls()
                     }
+                    
 
                 } catch (error) {
                     console.error('erro: addExit ', error)                   

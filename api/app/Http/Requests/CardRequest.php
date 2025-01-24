@@ -21,13 +21,22 @@ class CardRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [];
-        if($this->has('status'))
+        if($this->isMethod('put'))
         {
-            $rules['status'] = 'required';
+            return [ 
+                'user_id' => 'required',
+                'title' => 'sometimes',
+                'description' => 'sometimes',
+                'group' => 'nullable|required_without:contact',
+                'contact' => 'nullable|required_without:group',
+                'status' => 'sometimes',
+                'file' => 'sometimes'
+
+            ];
 
         }
-        return [
+
+        $rules = [
             'user_id' => 'required',
             'title' => 'required',
             'group' => 'nullable|required_without:contact',
@@ -37,5 +46,6 @@ class CardRequest extends FormRequest
             
         ];
         
+        return $rules;
     }
 }

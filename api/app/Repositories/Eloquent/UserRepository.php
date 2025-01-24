@@ -3,8 +3,9 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Calls;
-use App\Repositories\Interface\User;
 use App\Models\Users;
+
+use App\Repositories\Interface\User;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements User
@@ -131,6 +132,6 @@ class UserRepository implements User
         
         $user->save();
         return $user->total_call_exit;
+        
     }
-
 }

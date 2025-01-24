@@ -48,18 +48,14 @@ class UserController extends Controller
     public function callInput(UserRequest $request, int $id)
     {
         $data = $request->validated();
-        return response()->json($data);
-        //return $this->userService->callInput($data, $id);                             
-
+        return $this->userService->callInput($data['call'], $id);                             
 
     }
 
-    public function callExit(Request $request, int $id)
+    public function callExit(UserRequest $request, int $id)
     {
-        if($request->has('call'))
-        {
-            return $this->userService->callExit($request->input('call'), $id);
-        }    
+        $data = $request->validated();
+        return $this->userService->callExit($data['call'], $id); 
     }
 
     public function getCalls(int $id)
@@ -68,13 +64,9 @@ class UserController extends Controller
 
     }
 
-    public function filterCalls(Request $request, int $id)
+    public function filterCalls(UserRequest $request, int $id)
     {
-        $data = $request->validate([
-            'start' => 'required|date',
-            'end' => 'required|date'
-
-        ]);
+        $data = $request->validated();
         return $this->userService->filterCalls($data, $id);
 
     }

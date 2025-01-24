@@ -6,10 +6,10 @@ use App\Repositories\Eloquent\LoginRepository;
 use Illuminate\Support\Facades\Hash;
 class LoginService
 {
-    protected $repository;
-    public function __construct(LoginRepository $repository)
+    protected $loinRepository;
+    public function __construct(LoginRepository $loinRepository)
     {
-        $this->repository = $repository;
+        $this->loinRepository = $loinRepository;
 
     }
     public function returnResponseTh($th)
@@ -27,7 +27,7 @@ class LoginService
     public function login(array $data)
     {
         try {
-            $user = $this->repository->find($data['login']);
+            $user = $this->loinRepository->find($data['login']);
 
             if(empty($user))
             {

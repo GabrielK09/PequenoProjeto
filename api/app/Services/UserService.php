@@ -6,18 +6,17 @@ use App\Repositories\Eloquent\UserRepository;
 
 class UserService
 {
-    protected $repository;
+    protected $userRepository;
 
-    public function __construct(UserRepository $repository)
+    public function __construct(UserRepository $userRepository)
     {
-        $this->repository = $repository;
+        $this->userRepository = $userRepository;
 
     }
 
     public function returnResponseTh($th)
     {
         return response()->json([
-            'thLocal' => 'CandidateService',
             'success' => false,
             'th' => $th->getMessage(),
             'line' => $th->getLine(),
@@ -32,7 +31,7 @@ class UserService
         try {
             return response()->json([
                 'success' => true,
-                'all' => $this->repository->all()
+                'all' => $this->userRepository->all()
             ], 200);
 
         } catch (\Throwable $th) {
@@ -46,7 +45,7 @@ class UserService
         try {
             return response()->json([
                 'success' => true,
-                'create' => $this->repository->create($data)
+                'create' => $this->userRepository->create($data)
 
             ], 201);
         } catch (\Throwable $th) {
@@ -67,7 +66,7 @@ class UserService
         try {
             return response()->json([
                 'success' => true,
-                'update' => $this->repository->update($data, $id)
+                'update' => $this->userRepository->update($data, $id)
             
             ]);
 
@@ -80,7 +79,7 @@ class UserService
     public function findByID(int $id)
     {
         try {
-            return $this->repository->findByID($id);
+            return $this->userRepository->findByID($id);
         } catch (\Throwable $th) {
             return $this->returnResponseTh($th);
         }        
@@ -91,7 +90,7 @@ class UserService
         try {
             return response()->json([
                 'success' => true,
-                'delete' => $this->repository->delete($id)
+                'delete' => $this->userRepository->delete($id)
 
             ]);
 
@@ -106,7 +105,7 @@ class UserService
         try {
             return response()->json([
                 'success' => true,
-                'call' => $this->repository->callInput($call, $id)
+                'call' => $this->userRepository->callInput($call, $id)
             ]);
 
         } catch (\Throwable $th) {
@@ -120,7 +119,7 @@ class UserService
         try {
             return response()->json([
                 'success' => true,
-                'call' => $this->repository->callExit($call, $id)
+                'call' => $this->userRepository->callExit($call, $id)
             ]);
 
         } catch (\Throwable $th) {
@@ -134,7 +133,7 @@ class UserService
         try {
             return response()->json([
                 'success' => true,
-                'calls' => $this->repository->getCalls($id),
+                'calls' => $this->userRepository->getCalls($id),
                 
             ]);
         } catch (\Throwable $th) {
@@ -148,7 +147,7 @@ class UserService
         try {
             return response()->json([
                 'success' => true,
-                'filter' => $this->repository->filterCalls($data, $id)
+                'filter' => $this->userRepository->filterCalls($data, $id)
             ]);
         } catch (\Throwable $th) {
             return $this->returnResponseTh($th);

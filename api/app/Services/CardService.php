@@ -7,15 +7,15 @@ use App\Repositories\Eloquent\UserRepository;
 
 class CardService
 {
-    protected $repository;
+    protected $cardRepository;
     protected $userRepository;
 
     public function __construct(
-        CardRepository $repository,
+        CardRepository $cardRepository,
         UserRepository $userRepository
     )
     {
-        $this->repository = $repository;
+        $this->cardRepository = $cardRepository;
         $this->userRepository = $userRepository;
 
     }
@@ -34,7 +34,7 @@ class CardService
     public function all()
     {
         try {
-            return response()->json($this->repository->all());
+            return response()->json($this->cardRepository->all());
         } catch (\Throwable $th) {
             return $this->returnResponseTh($th);
         }
@@ -43,11 +43,11 @@ class CardService
     public function update(array $data, int $id)
     {
         try {
-            $this->repository->update($data, $id);
+            $this->cardRepository->update($data, $id);
             
             return response()->json([
                 'success' => true,
-                'update' => $this->repository->findByID($id)
+                'update' => $this->cardRepository->findByID($id)
                 
             ], 200);
 
@@ -58,10 +58,10 @@ class CardService
 
     public function create(array $data)
     {
-        /*try {
+        try {
             $file_path = $this->archiveFile($data['file'], $data['user_id'], $data['group'] ?? $data['contact'], $data['description']);
 
-            $card = $this->repository->create($data, $file_path);
+            $card = $this->cardRepository->create($data, $file_path);
 
             return response()->json([
                 'success' => $card['success'],
@@ -71,17 +71,13 @@ class CardService
 
         } catch (\Throwable $th) {
             return $this->returnResponseTh($th);
-        }/*/
-            $file_path = $this->archiveFile($data['file'], $data['user_id'], $data['group'] ?? $data['contact'], $data['description']);
 
-            $card = $this->repository->create($data, $file_path);
+        }
+    }
 
-            return response()->json([
-                'success' => $card['success'],
-                'message' => $card
-
-            ], 200);
-        
+    public function show(int $id)
+    {
+        return response()->json($this->cardRepository->findByID($id));
     }
 
     public function archiveFile(object $file, int $id, string $group, string $description)
