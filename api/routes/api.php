@@ -20,7 +20,8 @@ Route::prefix('v1')->group( function (){
     Route::post('/call/filter/{id}', [UserController::class, 'filterCalls']);
 
     Route::get('/all/cards', [CardController::class, 'all']);
-    Route::get('/card/{id}', [CardController::class, 'all']);
+    Route::get('/card/{id}', [CardController::class, 'findByID']);
+    Route::put('/update/card/{id}', [CardController::class, 'update']);
     Route::post('/create-card', [CardController::class, 'create']);
 
     Route::post('/login', [LoginController::class, 'login']);

@@ -43,11 +43,11 @@ class CardService
     public function update(array $data, int $id)
     {
         try {
-            $this->cardRepository->update($data, $id);
+            
             
             return response()->json([
                 'success' => true,
-                'update' => $this->cardRepository->findByID($id)
+                'update' => $this->cardRepository->update($data, $id) //$this->cardRepository->findByID($id)
                 
             ], 200);
 
@@ -75,7 +75,7 @@ class CardService
         }
     }
 
-    public function show(int $id)
+    public function findByID(int $id)
     {
         return response()->json($this->cardRepository->findByID($id));
     }

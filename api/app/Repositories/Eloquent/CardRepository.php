@@ -66,8 +66,9 @@ class CardRepository implements Cards
     public function update(array $data, int $id)
     {
         try {
+            $user = $this->userService->findByID($data['user_id']);
             $card = $this->findByID($id);
-            $update = Card::where('id', $id)->update([
+            $card->update([
                 'title' => $data['title'],
                 'description' => $data['description'],
                 'group' => $data['group'] ?? null,
@@ -76,14 +77,16 @@ class CardRepository implements Cards
 
             ]);
 
-            CardAlteration::create([
-                'user_id' => $data['user_id'],
+            $teste = CardAlteration::create([
+                'user_id' => $user->id,
+                'user' => $user->name,
                 'before_status' => $card->status,
                 'after_status' => $data['status'],
-                'period_alteration' => $update->update_at
+                'period_alteration' => $card->updated_at
             ]);
 
-            return $update;
+            $card->save();
+            return $teste;
             
         } catch (\Throwable $th) {
             return $this->returnResponseTh($th);

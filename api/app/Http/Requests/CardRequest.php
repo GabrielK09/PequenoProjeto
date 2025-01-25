@@ -23,7 +23,7 @@ class CardRequest extends FormRequest
     {
         if($this->isMethod('put'))
         {
-            return [ 
+            return [
                 'user_id' => 'required',
                 'title' => 'sometimes',
                 'description' => 'sometimes',

@@ -89,7 +89,7 @@ class UserRepository implements User
         $user = $this->findByID($id);
         $totalCall = $user->total_call_input + $call;
 
-        $user::where('id', $id)->update([
+        $user->update([
             'total_call_input' => $totalCall,
 
         ]);
