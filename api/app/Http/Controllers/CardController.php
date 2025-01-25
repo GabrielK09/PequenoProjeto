@@ -32,8 +32,8 @@ class CardController extends Controller
         return $this->cardService->update($data, $id);
     }
 
-    public function show(int $id)
+    public function findByID(int $id)
     {
-        return $this->cardService->show($id);
+        return $this->cardService->findByID($id);
     }
 }

@@ -10,6 +10,7 @@ class CardAlteration extends Model
 
     protected $fillable = [
         'user_id',
+        'user',
         'before_status',
         'after_status',
         'period_alteration',
